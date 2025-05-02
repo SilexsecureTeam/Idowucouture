@@ -6,6 +6,7 @@ import FeaturedSlider from '../components/FeaturedSlider'
 import Category from '../components/Category'
 import Hurray from '../components/Hurray'
 import Collection from '../components/Collection'
+import Article from '../components/Article'
 
 const HomePage = () => {
   return (
@@ -17,6 +18,7 @@ const HomePage = () => {
       <Category />
       <Hurray />
       <Collection  />
+      <Article />
     </div>
   )
 }

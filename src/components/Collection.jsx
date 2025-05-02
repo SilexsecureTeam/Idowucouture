@@ -34,10 +34,10 @@ const Collection = () => (
           className="w-full h-full object-fill"
         />
         <div className="absolute bottom-4 left-4">
-          <h3 className="sm:text-[34px] text-2xl poppins text-[#121212] font-medium mb-2">{collections[0].title}</h3>
+          <h3 className="sm:text-[34px] text-2xl poppins text-[#121212] font-medium mb-1 md:mb-2">{collections[0].title}</h3>
           <a
             href={collections[0].link}
-            className="text-base text-[#121212] font-medium flex items-center gap-1 hover:underline"
+            className="text-base text-[#121212] font-medium flex items-center gap-1 underline"
           >
             Collections <span>→</span>
           </a>
@@ -54,10 +54,10 @@ const Collection = () => (
             className="w-full h-full object-fill"
           />
           <div className="absolute bottom-4 left-4">
-            <h3 className="sm:text-[34px] text-2xl poppins text-[#121212] font-medium mb-2">{collections[1].title}</h3>
+            <h3 className="sm:text-[34px] text-2xl poppins text-[#121212] font-medium mb-1 md:mb-2">{collections[1].title}</h3>
             <a
               href={collections[1].link}
-              className="text-base text-[#121212] font-medium flex items-center gap-1 hover:underline"
+              className="text-base text-[#121212] font-medium flex items-center gap-1 underline"
             >
               Collections <span>→</span>
             </a>
@@ -71,10 +71,10 @@ const Collection = () => (
             className="w-full h-full object-fill"
           />
           <div className="absolute bottom-4 left-4">
-            <h3 className="sm:text-[34px] text-2xl poppins text-[#121212] font-medium mb-2">{collections[2].title}</h3>
+            <h3 className="sm:text-[34px] text-2xl poppins text-[#121212] font-medium mb-1 md:mb-2">{collections[2].title}</h3>
             <a
               href={collections[2].link}
-              className="text-base text-[#121212] font-medium flex items-center gap-1 hover:underline"
+              className="text-base text-[#121212] font-medium flex items-center gap-1 underline"
             >
               Collections <span>→</span>
             </a>
