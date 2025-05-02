@@ -4,7 +4,7 @@ import herobg1 from '../assets/hero-bg1.png'; // image for mobile background
 
 const Hero = () => {
   return (
-    <div className="relative px-5 sm:px-10 lg:px-20 w-full min-h-screen pb-15 bg-black overflow-hidden">
+    <div className="relative px-5 sm:px-10 lg:px-20 w-full h-fit  pb-14 bg-black overflow-hidden">
       {/* Background image with golf clubs and balls */}
       <div
         className="absolute inset-0 bg-cover bg-right bg-no-repeat"
@@ -15,7 +15,7 @@ const Hero = () => {
         {/* Hidden image for larger screens (using media query) */}
         <div className="hidden md:block">
           <div
-            className="absolute inset-0 bg-cover bg-right bg-no-repeat"
+            className="absolute inset-0 bg-contain bg-right bg-no-repeat"
             style={{
               backgroundImage: `url(${herobg})`, // Desktop image
             }}
@@ -28,7 +28,7 @@ const Hero = () => {
         <div className="container pt-[455px] md:pt-16">
           <div className="w-full">
             {/* Main heading with proper line breaks */}
-            <h1 className="text-white text-center md:text-start text-[40px] leading-9 sm:leading-14 md:leading-17 sm:text-6xl md:text-7xl font-meduim mb-5">
+            <h1 className="text-white text-center md:text-start text-[40px] leading-9 sm:leading-14 md:leading-17 sm:text-6xl md:text-7xl font-meduim poppins mb-5">
               More than<br />
               just a game.<br />
               It's a lifestyle.

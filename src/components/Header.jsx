@@ -6,8 +6,8 @@ const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <div className='flex px-5 sm:px-10 lg:px-20 items-center justify-between h-15 bg-white relative'>
-      <img src={logo} alt="logo" className='h-15' />
+    <div className='flex px-5 sm:px-10 lg:px-20 items-center justify-between h-16 bg-white relative'>
+      <img src={logo} alt="logo" className='h-16' />
 
       {/* Desktop Nav */}
       <ul className="hidden md:flex justify-between items-center w-full max-w-[330px]">
