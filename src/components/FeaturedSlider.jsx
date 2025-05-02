@@ -1,5 +1,3 @@
-// make the active dot black and the inactive dots gray. don't change the remaining codes.
-
 import React from "react";
 import Slider from "react-slick";
 import products from "../data/FeatureProduct"
@@ -26,6 +24,21 @@ const StarRating = ({ rating }) => {
 };
 
 const FeaturedSlider = () => {
+  const [activeProductId, setActiveProductId] = React.useState(null);
+
+  React.useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (!e.target.closest(".clickable-product")) {
+        setActiveProductId(null);
+      }
+    };
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+  
+
   const slidesToShow = 4;
   const settings = {
     dots: true,
@@ -101,63 +114,79 @@ const FeaturedSlider = () => {
   .custom-dots-class li.slick-active div {
     background-color: black !important;
   }
+    @media (max-width: 640px) {
+  .custom-dots-class {
+    right: 20px !important;
+    justify-content: flex-end;
+  }
+}
+
 `}</style>
 
 
       <Slider {...settings}>
-        {products.map((product) => (
-          <div key={product.id} className="pl-5 sm:pl-10 lg:pl-20">
-            <div className="bg-white rounded-md relative group">
-              {/* HOT badge */}
-              {product.hot && (
-                <span className="absolute top-3 left-3 bg-white text-black text-xs font-semibold px-2 py-0.5 rounded z-10">
-                  HOT
-                </span>
-              )}
+      {products.map((product) => (
+  <div key={product.id} className="pl-5 sm:pl-10 lg:pl-20">
+    <div
+      className="bg-white rounded-md relative group clickable-product"
+      onClick={() => {
+        if (window.innerWidth <= 640) {
+          setActiveProductId((prev) => (prev === product.id ? null : product.id));
+        }
+      }}
+    >
+      {/* HOT badge */}
+      {product.hot && (
+        <span className="absolute top-3 left-3 bg-white text-black text-xs font-semibold px-2 py-0.5 rounded z-10">
+          HOT
+        </span>
+      )}
 
-              {/* Discount badge */}
-              {product.discount && (
-                <span className="absolute top-3 left-16 bg-green-500 text-white text-xs font-semibold px-2 py-0.5 rounded z-10">
-                  -{product.discount}%
-                </span>
-              )}
+      {/* Discount badge */}
+      {product.discount && (
+        <span className="absolute top-3 left-16 bg-green-500 text-white text-xs font-semibold px-2 py-0.5 rounded z-10">
+          -{product.discount}%
+        </span>
+      )}
 
-              {/* Product Image */}
-              <div className="relative">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-56 object-cover bg-white rounded-t-md"
-                />
-                {/* Add to cart button on hover */}
-                <button
-                  className="absolute bottom-3 left-1/2 transform -translate-x-1/2 bg-black text-white text-sm py-2 px-6 rounded opacity-0 group-hover:opacity-100 transition-opacity w-[95%] mx-auto"
-                  aria-label={`Add ${product.name} to cart`}
-                >
-                  Add to cart
-                </button>
-              </div>
+      {/* Product Image */}
+      <div className="relative">
+        <img
+          src={product.image}
+          alt={product.name}
+          className="w-full h-56 object-cover bg-white rounded-t-md"
+        />
+        {/* Add to cart button */}
+        <button
+          className={`absolute bottom-3 left-1/2 transform -translate-x-1/2 bg-black text-white text-sm py-2 px-6 rounded transition-opacity w-[95%] mx-auto
+          ${activeProductId === product.id ? "opacity-100" : "opacity-0"} group-hover:opacity-100`}
+          aria-label={`Add ${product.name} to cart`}
+        >
+          Add to cart
+        </button>
+      </div>
 
-              {/* Rating */}
-              <div className="px-3 pt-3">
-                <StarRating rating={product.rating} />
-              </div>
+      {/* Rating */}
+      <div className="px-3 pt-3">
+        <StarRating rating={product.rating} />
+      </div>
 
-              {/* Product name */}
-              <h3 className="text-sm font-semibold px-3">{product.name}</h3>
+      {/* Product name */}
+      <h3 className="text-sm font-semibold px-3">{product.name}</h3>
 
-              {/* Price */}
-              <div className="px-3 pb-3 mt-1 flex items-center gap-2">
-                <span className="font-semibold">${product.price.toFixed(2)}</span>
-                {product.originalPrice && (
-                  <span className="line-through text-gray-400 text-xs">
-                    ${product.originalPrice.toFixed(2)}
-                  </span>
-                )}
-              </div>
-            </div>
-          </div>
-        ))}
+      {/* Price */}
+      <div className="px-3 pb-3 mt-1 flex items-center gap-2">
+        <span className="font-semibold">${product.price.toFixed(2)}</span>
+        {product.originalPrice && (
+          <span className="line-through text-gray-400 text-xs">
+            ${product.originalPrice.toFixed(2)}
+          </span>
+        )}
+      </div>
+    </div>
+  </div>
+))}
+
       </Slider>
     </section>
   );
