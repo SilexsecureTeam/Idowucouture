@@ -4,6 +4,7 @@ import Header from '../components/Header'
 import Hero from '../components/Hero'
 import FeaturedSlider from '../components/FeaturedSlider'
 import Category from '../components/Category'
+import Hurray from '../components/Hurray'
 
 const HomePage = () => {
   return (
@@ -13,6 +14,7 @@ const HomePage = () => {
       <Hero />
       <FeaturedSlider />
       <Category />
+      <Hurray />
     </div>
   )
 }
