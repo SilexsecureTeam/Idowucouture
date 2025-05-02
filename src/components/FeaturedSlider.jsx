@@ -1,3 +1,5 @@
+// let the dot with classname custom-dots-class be by the right in laptop view just the way it is in phone view 
+
 import React from "react";
 import Slider from "react-slick";
 import products from "../data/FeatureProduct"
@@ -99,26 +101,24 @@ const FeaturedSlider = () => {
     }
   }
   .custom-dots-class {
-    position: absolute;
-    top: -45px;
-    right: 30px;
-    bottom: auto;
-    display: flex !important;
-  }
-  .custom-dots-class li {
-    margin: 0 3px;
-  }
-  .custom-dots-class li div {
-    background-color: gray;
-  }
-  .custom-dots-class li.slick-active div {
-    background-color: black !important;
-  }
-    @media (max-width: 640px) {
-  .custom-dots-class {
-    right: 20px !important;
-    justify-content: flex-end;
-  }
+  position: absolute;
+  top: -45px;
+  right: 30px !important;
+  bottom: auto;
+  display: flex !important;
+  justify-content: flex-end;
+}
+
+.custom-dots-class li {
+  margin: 0 3px;
+}
+
+.custom-dots-class li div {
+  background-color: gray;
+}
+
+.custom-dots-class li.slick-active div {
+  background-color: black !important;
 }
 
 `}</style>
@@ -176,7 +176,7 @@ const FeaturedSlider = () => {
 
       {/* Price */}
       <div className="px-3 pb-3 mt-1 flex items-center gap-2">
-        <span className="font-semibold">${product.price.toFixed(2)}</span>
+        <span className="font-semibold">#{product.price.toFixed(2)}</span>
         {product.originalPrice && (
           <span className="line-through text-gray-400 text-xs">
             ${product.originalPrice.toFixed(2)}
