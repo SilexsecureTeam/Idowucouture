@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import hurray from "../assets/hurray.png";
+import hurray from "../assets/Hurray.png"; 
 
 const Hurray = () => {
   const [days, setDays] = useState(0);
@@ -9,7 +9,7 @@ const Hurray = () => {
 
   useEffect(() => {
     const targetDate = new Date("2025-05-08T17:46:00");
-
+ 
     const interval = setInterval(() => {
       const now = new Date().getTime();
       const difference = targetDate.getTime() - now;
