@@ -5,9 +5,9 @@ import { Mail } from 'lucide-react'
 const Newsletter = () => {
     const backgroundImage = newsletter
   return (
-    <div className='bg-cover py-18 md:px-5  bg-no-repeat bg-center h-fit w-full' 
+    <div className='bg-cover py-18 px-5  bg-no-repeat bg-center h-fit w-full' 
     style={{ backgroundImage: `url(${backgroundImage})` }}>
-      <div className="max-w-[520px] w-full mx-auto px-5">
+      <div className="max-w-[520px] w-full mx-auto">
         <h1 className='poppins text-white text-[20px] md:text-[40px] font-medium text-center mb-0'>Join Our Newsletter</h1>
         <p className='text-center text-normal mt-0 mb:text-[18px] text-sm text-[#fefefe] mb-6'>Sign up for deals, new products and promotions</p>
         <form className='flex items-center pb-2 border-b-1 border-b-[#fefefe] justify-between gap-4'>
