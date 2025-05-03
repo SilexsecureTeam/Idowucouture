@@ -13,9 +13,9 @@ const Newsletter = () => {
         <form className='flex items-center pb-2 border-b-1 border-b-[#fefefe] justify-between gap-4'>
             <div className="flex gap-x-0 items-center">
                 <Mail className='text-white w-fit' size={20}/>
-            <input type="email" placeholder='Email address' className='border-0 placeholder-white text-white outline-none flex-1 px-5 py-2'/>
+            <input type="email" placeholder='Email address' className='border-0 placeholder-white text-white outline-none flex-1  py-2'/>
             </div>
-            <button className=' px-5 text-white  cursor-pointer'>Signup</button>
+            <button className='  text-white  cursor-pointer'>Signup</button>
         </form>
       </div>
     </div>
