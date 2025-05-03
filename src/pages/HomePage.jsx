@@ -8,6 +8,7 @@ import Hurray from '../components/Hurray'
 import Collection from '../components/Collection'
 import Article from '../components/Article'
 import Newsletter from '../components/Newsletter'
+import Newsfeed from '../components/Newsfeed'
 
 const HomePage = () => {
   return (
@@ -21,6 +22,7 @@ const HomePage = () => {
       <Collection  />
       <Article />
       <Newsletter />
+      <Newsfeed />
     </div>
   )
 }
