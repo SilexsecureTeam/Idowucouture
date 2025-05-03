@@ -48,9 +48,9 @@ const Article = () => {
                 <h3 className="text-[20px] poppins text-[#23262F] font-medium mb-1 md:mb-2">{article.title}</h3>
                 <a
                   href={article.link}
-                  className="text-base text-[#141718] font-medium flex items-center gap-1 underline"
+                  className="text-base text-[#141718] font-medium flex items-center gap-1 border-b-1 border-b-black pb-1 w-fit"
                 >
-                  Read More <span>→</span>
+                  Read More <span className='text-[]20px'>→</span>
                 </a>
               </div>
             </div>

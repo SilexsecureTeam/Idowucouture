@@ -7,6 +7,7 @@ import Category from '../components/Category'
 import Hurray from '../components/Hurray'
 import Collection from '../components/Collection'
 import Article from '../components/Article'
+import Newsletter from '../components/Newsletter'
 
 const HomePage = () => {
   return (
@@ -19,6 +20,7 @@ const HomePage = () => {
       <Hurray />
       <Collection  />
       <Article />
+      <Newsletter />
     </div>
   )
 }

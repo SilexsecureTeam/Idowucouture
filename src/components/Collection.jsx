@@ -25,7 +25,7 @@ const Collection = () => (
   <div className="bg-white px-5 sm:px-10 lg:px-20 py-8">
     <h2 className="text-2xl md:text-[40px] font-medium poppins mb-8">Shop Collection</h2>
     {/* Responsive grid: 1 column on mobile, 2 columns on md+ */}
-    <div className="flex flex-col md:flex-row gap-4 md:max-h-[80vh] md:space-x-6 mx-auto w-full">
+    <div className="flex flex-col md:flex-row gap-4 md:max-h-[80vh] mx-auto w-full">
       {/* Juniors Set (big card) */}
       <div className="div1 relative flex-1 h-full md:h-auto md:max-h-[80vh] flex flex-col">
         <img
@@ -37,7 +37,7 @@ const Collection = () => (
           <h3 className="sm:text-[34px] text-xl poppins text-[#121212] font-medium mb-1 md:mb-2">{collections[0].title}</h3>
           <a
             href={collections[0].link}
-            className="text-base text-[#121212] font-medium flex items-center gap-1 underline"
+            className="text-base text-[#121212] font-medium flex items-center gap-1 border-b-1 border-b-black pb-1 w-fit"
           >
             Collections <span>→</span>
           </a>
@@ -45,7 +45,7 @@ const Collection = () => (
       </div>
 
       {/* Men’s Set & Women’s Set stacked vertically on md+, horizontally on mobile */}
-      <div className="div2 flex flex-col gap-4 flex-1 h-full md:h-auto md:max-h-[80vh]">
+      <div className="div2 flex flex-col gap-4 flex-1 h-full md:h-auto md:max-h-[77vh]">
         {/* Men’s Set */}
         <div className="relative flex-1 h-1/2 md:aspect-auto">
           <img
@@ -57,7 +57,7 @@ const Collection = () => (
             <h3 className="sm:text-[34px] text-xl poppins text-[#121212] font-medium mb-1 md:mb-2">{collections[1].title}</h3>
             <a
               href={collections[1].link}
-              className="text-base text-[#121212] font-medium flex items-center gap-1 underline"
+              className="text-base text-[#121212] font-medium flex items-center gap-1 border-b-1 border-b-black pb-1 w-fit"
             >
               Collections <span>→</span>
             </a>
@@ -74,7 +74,7 @@ const Collection = () => (
             <h3 className="sm:text-[34px] text-xl poppins text-[#121212] font-medium mb-1 md:mb-2">{collections[2].title}</h3>
             <a
               href={collections[2].link}
-              className="text-base text-[#121212] font-medium flex items-center gap-1 underline"
+              className="text-base text-[#121212] font-medium flex items-center gap-1 border-b-1 border-b-black pb-1 w-fit"
             >
               Collections <span>→</span>
             </a>
