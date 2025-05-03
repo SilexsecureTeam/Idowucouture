@@ -10,6 +10,7 @@ import Article from '../components/Article'
 import Newsletter from '../components/Newsletter'
 import Newsfeed from '../components/Newsfeed'
 import Image from '../components/Image'
+import Footer from '../components/Footer'
 
 const HomePage = () => {
   return (
@@ -25,6 +26,7 @@ const HomePage = () => {
       <Newsletter />
       <Newsfeed />
       <Image />
+      <Footer />
     </div>
   )
 }

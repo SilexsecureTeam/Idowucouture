@@ -1,11 +1,8 @@
-// let the dot with classname custom-dots-class be by the right in laptop view just the way it is in phone view 
-
 import React from "react";
 import Slider from "react-slick";
-import products from "../data/FeatureProduct"
+import products from "../data/FeatureProduct";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
 
 const StarRating = ({ rating }) => {
   return (
@@ -39,23 +36,24 @@ const FeaturedSlider = () => {
       document.removeEventListener("click", handleClickOutside);
     };
   }, []);
-  
 
   const slidesToShow = 4;
   const settings = {
     dots: true,
-    infinite: false,
+    infinite: true, // Changed to true to loop back to the first slide
     speed: 500,
     slidesToShow: slidesToShow,
     slidesToScroll: 1,
     arrows: false,
+    autoplay: true, // Enable autoplay
+    autoplaySpeed: 1500, // Set to 1.5 seconds (1500ms)
     dotsClass: "slick-dots custom-dots-class",
-    appendDots: dots => (
+    appendDots: (dots) => (
       <div className="flex absolute -top-6 right-8 items-center">
         <ul style={{ margin: "0px" }}> {dots} </ul>
       </div>
     ),
-    customPaging: function() {
+    customPaging: function () {
       return (
         <div className="w-2 h-2 bg-gray-400 rounded-full transition-colors duration-200 hover:bg-black"></div>
       );
@@ -87,106 +85,103 @@ const FeaturedSlider = () => {
 
       {/* Add cursor styles for drag functionality */}
       <style jsx global>{`
-  .slick-list {
-    cursor: grab;
-  }
-  .slick-list:active {
-    cursor: grabbing;
-    color: black;
-    background-color: white;
-  }
-  @media (max-width: 768px) {
-    .slick-list {
-      cursor: pointer;
-    }
-  }
-  .custom-dots-class {
-  position: absolute;
-  top: -45px;
-  right: 30px !important;
-  bottom: auto;
-  display: flex !important;
-  justify-content: flex-end;
-}
+        .slick-list {
+          cursor: grab;
+        }
+        .slick-list:active {
+          cursor: grabbing;
+          color: black;
+          background-color: white;
+        }
+        @media (max-width: 768px) {
+          .slick-list {
+            cursor: pointer;
+          }
+        }
+        .custom-dots-class {
+          position: absolute;
+          top: -45px;
+          right: 30px !important;
+          bottom: auto;
+          display: flex !important;
+          justify-content: flex-end;
+        }
 
-.custom-dots-class li {
-  margin: 0 3px;
-}
+        .custom-dots-class li {
+          margin: 0 3px;
+        }
 
-.custom-dots-class li div {
-  background-color: gray;
-}
+        .custom-dots-class li div {
+          background-color: gray;
+        }
 
-.custom-dots-class li.slick-active div {
-  background-color: black !important;
-}
-
-`}</style>
-
+        .custom-dots-class li.slick-active div {
+          background-color: black !important;
+        }
+      `}</style>
 
       <Slider {...settings}>
-      {products.map((product) => (
-  <div key={product.id} className="pl-5 sm:pl-10 lg:pl-20">
-    <div
-      className="bg-white rounded-md relative group clickable-product"
-      onClick={() => {
-        if (window.innerWidth <= 640) {
-          setActiveProductId((prev) => (prev === product.id ? null : product.id));
-        }
-      }}
-    >
-      {/* HOT badge */}
-      {product.hot && (
-        <span className="absolute top-3 left-3 bg-white text-black text-xs font-semibold px-2 py-0.5 rounded z-10">
-          HOT
-        </span>
-      )}
+        {products.map((product) => (
+          <div key={product.id} className="pl-5 sm:pl-10 lg:pl-20 ">
+            <div
+              className="bg-white rounded-md relative group clickable-product"
+              onClick={() => {
+                if (window.innerWidth <= 640) {
+                  setActiveProductId((prev) => (prev === product.id ? null : product.id));
+                }
+              }}
+            >
+              {/* HOT badge */}
+              {product.hot && (
+                <span className="absolute top-3 left-3 bg-white text-black text-xs font-semibold px-2 py-0.5 rounded z-10">
+                  HOT
+                </span>
+              )}
 
-      {/* Discount badge */}
-      {product.discount && (
-        <span className="absolute top-3 left-16 bg-green-500 text-white text-xs font-semibold px-2 py-0.5 rounded z-10">
-          -{product.discount}%
-        </span>
-      )}
+              {/* Discount badge */}
+              {product.discount && (
+                <span className="absolute top-3 left-16 bg-green-500 text-white text-xs font-semibold px-2 py-0.5 rounded z-10">
+                  -{product.discount}%
+                </span>
+              )}
 
-      {/* Product Image */}
-      <div className="relative">
-        <img
-          src={product.image}
-          alt={product.name}
-          className="w-full h-56 object-cover bg-white rounded-t-md"
-        />
-        {/* Add to cart button */}
-        <button
-          className={`absolute bottom-3 left-1/2 transform -translate-x-1/2 bg-black text-white text-sm py-2 px-6 rounded transition-opacity w-[95%] mx-auto
-          ${activeProductId === product.id ? "opacity-100" : "opacity-0"} group-hover:opacity-100`}
-          aria-label={`Add ${product.name} to cart`}
-        >
-          Add to cart
-        </button>
-      </div>
+              {/* Product Image */}
+              <div className="relative">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-full h-56 object-cover bg-white rounded-t-md"
+                />
+                {/* Add to cart button */}
+                <button
+                  className={`absolute bottom-3 left-1/2 transform -translate-x-1/2 bg-black text-white text-sm py-2 px-6 rounded transition-opacity w-[95%] mx-auto
+                  ${activeProductId === product.id ? "opacity-100" : "opacity-0"} group-hover:opacity-100`}
+                  aria-label={`Add ${product.name} to cart  `}
+                >
+                  Add to cart
+                </button>
+              </div>
 
-      {/* Rating */}
-      <div className="px-3 pt-3">
-        <StarRating rating={product.rating} />
-      </div>
+              {/* Rating */}
+              <div className="px-3 pt-3">
+                <StarRating rating={product.rating} />
+              </div>
 
-      {/* Product name */}
-      <h3 className="text-sm font-semibold px-3">{product.name}</h3>
+              {/* Product name */}
+              <h3 className="text-sm font-semibold px-3">{product.name}</h3>
 
-      {/* Price */}
-      <div className="px-3 pb-3 mt-1 flex items-center gap-2">
-        <span className="font-semibold">#{product.price.toFixed(2)}</span>
-        {product.originalPrice && (
-          <span className="line-through text-gray-400 text-xs">
-            ${product.originalPrice.toFixed(2)}
-          </span>
-        )}
-      </div>
-    </div>
-  </div>
-))}
-
+              {/* Price */}
+              <div className="px-3 pb-3 mt-1 flex items-center gap-2">
+                <span className="font-semibold">${product.price.toFixed(2)}</span>
+                {product.originalPrice && (
+                  <span className="line-through text-gray-400 text-xs">
+                    ${product.originalPrice.toFixed(2)}
+                  </span>
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
       </Slider>
     </section>
   );
