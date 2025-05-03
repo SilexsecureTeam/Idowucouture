@@ -9,6 +9,7 @@ import Collection from '../components/Collection'
 import Article from '../components/Article'
 import Newsletter from '../components/Newsletter'
 import Newsfeed from '../components/Newsfeed'
+import Image from '../components/Image'
 
 const HomePage = () => {
   return (
@@ -23,6 +24,7 @@ const HomePage = () => {
       <Article />
       <Newsletter />
       <Newsfeed />
+      <Image />
     </div>
   )
 }
