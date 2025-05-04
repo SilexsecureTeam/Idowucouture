@@ -28,7 +28,7 @@ const Footer = () => {
       <div className="w-full mx-auto flex flex-col md:flex-row md:justify-between gap-10 md:gap-0">
         {/* Left section */}
         <div className="md:w-1/3 mb-2 md:mb-0 border-b-1 border-b-gray-700 md:border-b-0 pb-4 md:pb-0 w-full">
-          <h2 className="text-[24px] poppins font-medium mb-4">3legant.</h2>
+          <h2 className="text-[24px] poppins font-medium mb-4">Idowucouture</h2>
           <p className="mb-6 text-[20px] poppins font-medium text-[#fefefe]">
             More than just a game.<br />It’s a lifestyle.
           </p>
@@ -127,7 +127,7 @@ const Footer = () => {
           </div>
         </div>
         {/* Laptop view  */}
-      <div className="hidden md:flex md:items-center md:justify-between gap-6">
+      <div className="hidden md:flex w-full md:items-center md:justify-between gap-6">
           <div className="text-[#E8ECEF] poppins font-normal text-[12px]">
             Copyright © 2023 3legant. All rights reserved | 
             <a href="#" className="text-[#6C7275] ml-1">Privacy Policy</a> 

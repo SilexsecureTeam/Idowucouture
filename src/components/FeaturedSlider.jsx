@@ -122,7 +122,7 @@ const FeaturedSlider = () => {
 
       <Slider {...settings}>
         {products.map((product) => (
-          <div key={product.id} className="pl-5 sm:pl-10 lg:pl-20 ">
+          <div key={product.id} className="pl-5 sm:pl-10  ">
             <div
               className="bg-white rounded-md relative group clickable-product"
               onClick={() => {

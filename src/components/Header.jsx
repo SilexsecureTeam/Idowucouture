@@ -1,9 +1,15 @@
 import React, { useState } from 'react'
 import logo from '../assets/logo.png'
 import { SearchIcon, ShoppingBagIcon, UserIcon, MenuIcon, XIcon } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false)
+  const navigate = useNavigate()
+
+  const goSignUp = () => {
+    navigate('/signup')
+  }
 
   return (
     <div className='flex px-5 sm:px-10 lg:px-20 items-center justify-between h-16 bg-white relative'>
@@ -20,7 +26,7 @@ const Header = () => {
       {/* Icons */}
       <div className="flex gap-x-3 items-center">
         <SearchIcon className='w-6 h-6 text-[#141718] cursor-pointer' />
-        <UserIcon className='w-6 h-6 text-[#141718] cursor-pointer' />
+        <button onClick={goSignUp}><UserIcon className='w-6 h-6 text-[#141718] cursor-pointer' /></button>
         <div className="relative">
           <ShoppingBagIcon className='w-6 h-6 text-[#141718] cursor-pointer' />
           <div className="absolute bg-black text-center text-[10px] h-4 w-4 rounded-full text-white top-0 -right-2">2</div>
