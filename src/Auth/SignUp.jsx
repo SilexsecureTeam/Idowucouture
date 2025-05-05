@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import auth from '../assets/auth.png'; 
-import logo from '../assets/logo.png';
+import auth from '../assets/sign-up.png'; 
+// import logo from '../assets/logo.png';
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -55,13 +55,13 @@ const SignUp = () => {
         <img
           src={auth}
           alt="Auth visual"
-          className="h-full w-full object-cover object-center"
+          className="h-full w-full object-cover md:object-fill object-center"
         />
-        <img
+        {/* <img
           src={logo}
           alt="Logo"
           className="absolute left-1/2 transform -translate-x-1/2 top-4 h-14"
-        />
+        /> */}
       </div>
 
       {/* Right side - Form */}
