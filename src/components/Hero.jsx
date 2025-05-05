@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import herobg from '../assets/hero-bg.png'; 
 import herobg1 from '../assets/hero-bg1.png'; 
+import herobg2 from '../assets/hero-bg2.png'; 
 
 const Hero = () => {
-  const images = [herobg, herobg1];
+  const images = [herobg, herobg1, herobg2];
   const [currentImage, setCurrentImage] = useState(0);
 
   useEffect(() => {

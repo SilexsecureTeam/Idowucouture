@@ -43,9 +43,9 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row">
+    <div className="min-h-screen md:max-h-screen flex flex-col md:flex-row">
       {/* Left side - Image */}
-      <div className="relative w-full md:w-1/2 md:max-h-screen">
+      <div className="relative w-full md:w-1/2 ">
         <img
           src={auth}
           alt="Auth visual"
