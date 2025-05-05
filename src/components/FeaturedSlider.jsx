@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import products from "../data/FeatureProduct";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { useCart } from "../context/CartHooks"; // Updated import
 
 const StarRating = ({ rating }) => {
   return (
@@ -23,30 +24,18 @@ const StarRating = ({ rating }) => {
 };
 
 const FeaturedSlider = () => {
-  const [activeProductId, setActiveProductId] = React.useState(null);
-
-  React.useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (!e.target.closest(".clickable-product")) {
-        setActiveProductId(null);
-      }
-    };
-    document.addEventListener("click", handleClickOutside);
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, []);
+  const { addToCart, cart } = useCart(); // Added cart to access quantities
 
   const slidesToShow = 4;
   const settings = {
     dots: true,
-    infinite: true, // Changed to true to loop back to the first slide
+    infinite: true,
     speed: 500,
     slidesToShow: slidesToShow,
     slidesToScroll: 1,
     arrows: false,
-    autoplay: true, // Enable autoplay
-    autoplaySpeed: 1500, // Set to 1.5 seconds (1500ms)
+    autoplay: true,
+    autoplaySpeed: 1500,
     dotsClass: "slick-dots custom-dots-class",
     appendDots: (dots) => (
       <div className="flex absolute -top-6 right-8 items-center">
@@ -61,13 +50,13 @@ const FeaturedSlider = () => {
     draggable: true,
     responsive: [
       {
-        breakpoint: 1024, // tablets and below
+        breakpoint: 1024,
         settings: {
           slidesToShow: 3,
         },
       },
       {
-        breakpoint: 640, // mobile
+        breakpoint: 640,
         settings: {
           slidesToShow: 2,
         },
@@ -79,11 +68,9 @@ const FeaturedSlider = () => {
     <section className="w-full mx-auto py-8 relative">
       <div className="flex px-5 sm:px-10 lg:px-20 justify-between items-center mb-6">
         <h2 className="text-2xl md:text-[40px] poppins text-black font-semibold">Featured</h2>
-        {/* This div will receive the dots from appendDots */}
         <div className="dots-container"></div>
       </div>
 
-      {/* Add cursor styles for drag functionality */}
       <style jsx global>{`
         .slick-list {
           cursor: grab;
@@ -106,82 +93,68 @@ const FeaturedSlider = () => {
           display: flex !important;
           justify-content: flex-end;
         }
-
         .custom-dots-class li {
           margin: 0 3px;
         }
-
         .custom-dots-class li div {
           background-color: gray;
         }
-
         .custom-dots-class li.slick-active div {
           background-color: black !important;
         }
       `}</style>
 
       <Slider {...settings}>
-        {products.map((product) => (
-          <div key={product.id} className="pl-5 sm:pl-10  ">
-            <div
-              className="bg-white rounded-md relative group clickable-product"
-              onClick={() => {
-                if (window.innerWidth <= 640) {
-                  setActiveProductId((prev) => (prev === product.id ? null : product.id));
-                }
-              }}
-            >
-              {/* HOT badge */}
-              {product.hot && (
-                <span className="absolute top-3 left-3 bg-white text-black text-xs font-semibold px-2 py-0.5 rounded z-10">
-                  HOT
-                </span>
-              )}
+        {products.map((product) => {
+          // Find the product's quantity in the cart
+          const cartItem = cart.find((item) => item.id === product.id);
+          const qty = cartItem ? cartItem.qty : 0;
+          // Set button text based on quantity
+          const buttonText = qty > 0 ? `Add to cart(${qty})` : "Add to cart";
 
-              {/* Discount badge */}
-              {product.discount && (
-                <span className="absolute top-3 left-16 bg-green-500 text-white text-xs font-semibold px-2 py-0.5 rounded z-10">
-                  -{product.discount}%
-                </span>
-              )}
-
-              {/* Product Image */}
-              <div className="relative">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-56 object-cover bg-white rounded-t-md"
-                />
-                {/* Add to cart button */}
-                <button
-                  className={`absolute bottom-3 left-1/2 transform -translate-x-1/2 bg-black text-white text-sm py-2 px-6 rounded transition-opacity w-[95%] mx-auto
-                  ${activeProductId === product.id ? "opacity-100" : "opacity-0"} group-hover:opacity-100`}
-                  aria-label={`Add ${product.name} to cart  `}
-                >
-                  Add to cart
-                </button>
-              </div>
-
-              {/* Rating */}
-              <div className="px-3 pt-3">
-                <StarRating rating={product.rating} />
-              </div>
-
-              {/* Product name */}
-              <h3 className="text-sm font-semibold px-3">{product.name}</h3>
-
-              {/* Price */}
-              <div className="px-3 pb-3 mt-1 flex items-center gap-2">
-                <span className="font-semibold">${product.price.toFixed(2)}</span>
-                {product.originalPrice && (
-                  <span className="line-through text-gray-400 text-xs">
-                    ${product.originalPrice.toFixed(2)}
+          return (
+            <div key={product.id} className="pl-5 sm:pl-10">
+              <div className="bg-white rounded-md relative clickable-product">
+                {product.hot && (
+                  <span className="absolute top-3 left-3 bg-white text-black text-xs font-semibold px-2 py-0.5 rounded z-10">
+                    HOT
                   </span>
                 )}
+                {product.discount && (
+                  <span className="absolute top-3 left-16 bg-green-500 text-white text-xs font-semibold px-2 py-0.5 rounded z-10">
+                    -{product.discount}%
+                  </span>
+                )}
+                <div className="relative">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full h-56 object-cover bg-white rounded-t-md"
+                  />
+                  <button
+                    className="absolute bottom-3 left-1/2 transform -translate-x-1/2 bg-black text-white text-sm py-2 px-6 rounded w-[95%] mx-auto"
+                    aria-label={`Add ${product.name} to cart`}
+                    onClick={() => addToCart(product)}
+                  >
+                    {buttonText}
+                  </button>
+                </div>
+                <div className="px-3 pt-3">
+                  <StarRating rating={product.rating} />
+                </div>
+                <h3 className="text-sm font-semibold px-3">{product.name}</h3>
+                <div className="px-3 pb-3 mt-1 flex items-center gap-2">
+                  <span className="font-semibold">${product.price.toFixed(2)}</span>
+                  {product.originalPrice && (
+                    <span className="line-through text-gray-400 text-xs">
+                      ${product.originalPrice.toFixed(2)}
+                    </span>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </Slider>
     </section>
   );

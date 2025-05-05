@@ -49,7 +49,7 @@ const Login = () => {
         <img
           src={auth}
           alt="Auth visual"
-          className="sm:h-full h-1/2 w-full object-cover md:object-contain object-center"
+          className="sm:h-full h-1/2 w-full object-cover md:object-fill object-center"
         />
         {/* <img
           src={logo}
