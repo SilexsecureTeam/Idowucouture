@@ -93,7 +93,7 @@ const Cart = () => {
                     <span className="text-[20px] font-medium">Total</span>
                     <span>₦{total.toFixed(2)}</span>
                 </div>
-                <div className="flex w-fullpx-4 justify-center mt-4 gap-2">
+                <div className="flex w-full px-4 justify-center mt-4 gap-2">
                     <input
                       type="text"
                        placeholder="Add promo code"
