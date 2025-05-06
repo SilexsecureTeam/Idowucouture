@@ -93,13 +93,13 @@ const Cart = () => {
                     <span className="text-[20px] font-medium">Total</span>
                     <span>₦{total.toFixed(2)}</span>
                 </div>
-                <div className="flex w-full justify-center mt-4 gap-2">
+                <div className="flex w-fullpx-4 justify-center mt-4 gap-2">
                     <input
                       type="text"
                        placeholder="Add promo code"
                        value={promo}
                        onChange={(e) => setPromo(e.target.value)}
-                       className="md:flex-1 px-3 py-2 bg-[#F0F0F0] rounded-4xl text-black outline-none placeholder:text-[#6C7275]"
+                       className="md:flex-1  px-3 py-2 bg-[#F0F0F0] rounded-4xl text-black outline-none placeholder:text-[#6C7275]"
                     />
                     <button className="bg-black text-16 rounded-4xl cursor-pointer text-white px-6 py-2">
       Apply
