@@ -14,12 +14,12 @@ const Cart = () => {
 
   return (
     <div className="bg-white px-5 sm:px-10 lg:px-20 flex flex-col">
-      <h1 className="flex items-center gap-x-1 mt-2 font-normal text-black text-[16px]">
+      <div className="flex items-center gap-x-1 mt-2 font-normal text-black text-[16px]">
         <h1 className="opacity-60 flex items-center">
           Home <ChevronRightIcon size={15} />
         </h1>{" "}
         <span>Cart</span>
-      </h1>
+      </div>
       <div className="mx-auto w-full pb-6 pt-3">
         <h1 className="md:text-[40px] text-xl font-bold mb-5">Your cart</h1>
         {cart.length === 0 ? (
@@ -93,13 +93,13 @@ const Cart = () => {
                     <span className="text-[20px] font-medium">Total</span>
                     <span>₦{total.toFixed(2)}</span>
                 </div>
-                <div className="flex mt-4 gap-2">
+                <div className="flex w-full justify-center mt-4 gap-2">
                     <input
                       type="text"
-      placeholder="Add promo code"
-      value={promo}
-      onChange={(e) => setPromo(e.target.value)}
-      className="flex-1 px-3 py-2 bg-[#F0F0F0] rounded-4xl text-black outline-none placeholder:text-[#6C7275]"
+                       placeholder="Add promo code"
+                       value={promo}
+                       onChange={(e) => setPromo(e.target.value)}
+                       className="md:flex-1 px-3 py-2 bg-[#F0F0F0] rounded-4xl text-black outline-none placeholder:text-[#6C7275]"
                     />
                     <button className="bg-black text-16 rounded-4xl cursor-pointer text-white px-6 py-2">
       Apply
