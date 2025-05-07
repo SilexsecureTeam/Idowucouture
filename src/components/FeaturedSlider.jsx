@@ -3,28 +3,28 @@ import Slider from "react-slick";
 import products from "../data/FeatureProduct";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { useCart } from "../context/CartHooks"; // Updated import
-
-const StarRating = ({ rating }) => {
-  return (
-    <div className="flex text-yellow-400 mb-1">
-      {[...Array(5)].map((_, i) => (
-        <svg
-          key={i}
-          className={`w-4 h-4 fill-current ${i < rating ? "text-yellow-400" : "text-gray-300"}`}
-          viewBox="0 0 20 20"
-          fill="currentColor"
-          aria-hidden="true"
-        >
-          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.974a1 1 0 00.95.69h4.18c.969 0 1.371 1.24.588 1.81l-3.388 2.46a1 1 0 00-.364 1.118l1.287 3.974c.3.921-.755 1.688-1.54 1.118l-3.388-2.46a1 1 0 00-1.175 0l-3.388 2.46c-.784.57-1.838-.197-1.539-1.118l1.287-3.974a1 1 0 00-.364-1.118L2.045 9.4c-.783-.57-.38-1.81.588-.181h4.18a1 1 0 00.95-.69l1.286-3.974z" />
-        </svg>
-      ))}
-    </div>
-  );
-};
+import { useCart } from "../context/CartHooks";
+import { useNavigate } from "react-router-dom";
+import { useProduct } from "../context/ProductContext";
+import { ShoppingCart, Eye } from 'lucide-react'; // Added Lucide icons
 
 const FeaturedSlider = () => {
-  const { addToCart, cart } = useCart(); // Added cart to access quantities
+  const { addToCart, cart } = useCart();
+  const navigate = useNavigate();
+  const { setSelectedProduct } = useProduct();
+  const [showButtons, setShowButtons] = React.useState({}); // State to track button visibility per product
+
+  const handleViewDetails = (product) => {
+    setSelectedProduct(product); // Store the entire product
+    navigate("/product");
+  };
+
+  const toggleButtons = (productId, show) => {
+    setShowButtons((prev) => ({
+      ...prev,
+      [productId]: show,
+    }));
+  };
 
   const slidesToShow = 4;
   const settings = {
@@ -102,54 +102,140 @@ const FeaturedSlider = () => {
         .custom-dots-class li.slick-active div {
           background-color: black !important;
         }
+        .image-container {
+          position: relative;
+        }
+        .overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: rgba(0, 0, 0, 0.5);
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          z-index: 10;
+        }
+        @media (min-width: 768px) {
+          .image-container:hover .overlay {
+            opacity: 1;
+          }
+        }
+        @media (max-width: 767px) {
+          .overlay.active {
+            opacity: 1;
+          }
+        }
       `}</style>
 
       <Slider {...settings}>
         {products.map((product) => {
-          // Find the product's quantity in the cart
           const cartItem = cart.find((item) => item.id === product.id);
           const qty = cartItem ? cartItem.qty : 0;
-          // Set button text based on quantity
           const buttonText = qty > 0 ? `Add to cart(${qty})` : "Add to cart";
 
           return (
             <div key={product.id} className="pl-5 sm:pl-10">
               <div className="bg-white rounded-md relative clickable-product">
                 {product.hot && (
-                  <span className="absolute top-3 left-3 bg-white text-black text-xs font-semibold px-2 py-0.5 rounded z-10">
+                  <span className="absolute top-3 left-3 bg-white text-black text-xs font-semibold px-2 py-0.5 rounded z-20">
                     HOT
                   </span>
                 )}
                 {product.discount && (
-                  <span className="absolute top-3 left-16 bg-green-500 text-white text-xs font-semibold px-2 py-0.5 rounded z-10">
+                  <span className="absolute top-3 left-16 bg-green-500 text-white text-xs font-semibold px-2 py-0.5 rounded z-20">
                     -{product.discount}%
                   </span>
                 )}
-                <div className="relative">
+                <div
+                  className="image-container"
+                  onClick={() =>
+                    window.innerWidth < 768 &&
+                    toggleButtons(product.id, !showButtons[product.id])
+                  }
+                  onMouseEnter={() =>
+                    window.innerWidth >= 768 && toggleButtons(product.id, true)
+                  }
+                  onMouseLeave={() =>
+                    window.innerWidth >= 768 && toggleButtons(product.id, false)
+                  }
+                >
                   <img
                     src={product.image}
                     alt={product.name}
                     className="w-full h-56 object-cover bg-white rounded-t-md"
                   />
-                  <button
-                    className="absolute bottom-3 left-1/2 transform -translate-x-1/2 bg-black text-white text-sm py-2 px-6 rounded w-[95%] mx-auto"
-                    aria-label={`Add ${product.name} to cart`}
-                    onClick={() => addToCart(product)}
+                  <div
+                    className={`overlay ${
+                      showButtons[product.id] ? "active" : ""
+                    }`}
                   >
-                    {buttonText}
-                  </button>
+                    {window.innerWidth >= 768 ? (
+                      <>
+                        <button
+                          className="bg-black text-white text-sm py-2 px-6 cursor-pointer rounded hover:bg-gray-800 transition-all duration-300"
+                          aria-label={`Add ${product.name} to cart`}
+                          onClick={() => addToCart(product)}
+                        >
+                          {buttonText}
+                        </button>
+                        <button
+                          className="bg-gray-900 text-white text-sm py-2 px-6 cursor-pointer rounded hover:bg-green-500 transition-all duration-300"
+                          onClick={() => handleViewDetails(product)}
+                        >
+                          View Details
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        <button
+                          className="bg-black text-white p-2 rounded-full hover:bg-gray-800 transition-all duration-300"
+                          aria-label={`Add ${product.name} to cart`}
+                          onClick={() => addToCart(product)}
+                        >
+                          <ShoppingCart className="w-5 h-5" />
+                        </button>
+                        <button
+                          className="bg-gray-900 text-white p-2 rounded-full hover:bg-green-500 transition-all duration-300"
+                          onClick={() => handleViewDetails(product)}
+                        >
+                          <Eye className="w-5 h-5" />
+                        </button>
+                      </>
+                    )}
+                  </div>
                 </div>
                 <div className="px-3 pt-3">
-                  <StarRating rating={product.rating} />
+                  <div className="flex text-yellow-400 mb-1">
+                    {[...Array(5)].map((_, i) => (
+                      <svg
+                        key={i}
+                        className={`w-4 h-4 fill-current ${
+                          i < product.rating ? "text-yellow-400" : "text-gray-300"
+                        }`}
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.974a1 1 0 00.95.69h4.18c.969 0 1.371 1.24.588 1.81l-3.388 2.46a1 1 0 00-.364 1.118l1.287 3.974c.3.921-.755 1.688-1.54 1.118l-3.388-2.46a1 1 0 00-1.175 0l-3.388 2.46c-.784.57-1.838-.197-1.539-1.118l1.287-3.974a1 1 0 00-.364-1.118L2.045 9.4c-.783-.57-.38-1.81.588-.181h4.18a1 1 0 00.95-.69l1.286-3.974z" />
+                      </svg>
+                    ))}
+                  </div>
                 </div>
                 <h3 className="text-sm font-semibold px-3">{product.name}</h3>
-                <div className="px-3 pb-3 mt-1 flex items-center gap-2">
-                  <span className="font-semibold">${product.price.toFixed(2)}</span>
-                  {product.originalPrice && (
-                    <span className="line-through text-gray-400 text-xs">
-                      ${product.originalPrice.toFixed(2)}
-                    </span>
-                  )}
+                <div className="px-3 pb-3 mt-1 flex flex-col gap-2">
+                  <div className="flex items-center gap-2">
+                    <span className="font-semibold">${product.price.toFixed(2)}</span>
+                    {product.originalPrice && (
+                      <span className="line-through text-gray-400 text-xs">
+                        ${product.originalPrice.toFixed(2)}
+                      </span>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>

@@ -45,11 +45,11 @@ const Login = () => {
   return (
     <div className="min-h-screen md:max-h-screen flex flex-col md:flex-row">
       {/* Left side - Image */}
-      <div className="relative w-full md:w-1/2 ">
+      <div className="relative w-full md:w-1/2 h-[45vh] md:h-screen">
         <img
           src={auth}
           alt="Auth visual"
-          className="sm:h-full h-1/2 w-full object-cover md:object-fill object-center"
+          className="w-full h-full object-cover object-center"
         />
         {/* <img
           src={logo}

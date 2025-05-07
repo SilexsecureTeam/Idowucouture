@@ -1,20 +1,20 @@
 import { ArrowRightIcon, ServerCogIcon, X } from 'lucide-react'
-import React, { useEffect, useState } from 'react'
+// import React, { useEffect, useState } from 'react'
 
 const Notification = () => {
-  const [isScrolled, setIsScrolled] = useState(false)
+  // const [isScrolled, setIsScrolled] = useState(false)
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10)
-    }
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     setIsScrolled(window.scrollY > 10)
+  //   }
 
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  //   window.addEventListener('scroll', handleScroll)
+  //   return () => window.removeEventListener('scroll', handleScroll)
+  // }, [])
 
   return (
-    <div className={`${isScrolled ? 'fixed top-0' : 'relative'} z-40 w-full transition-all duration-300`}>
+    <div className='fixed top-0 left-0 w-full z-50'>
       <div className='bg-[#38CB89] w-full text-black h-10 flex items-center justify-center relative'>
         <ServerCogIcon className='w-5 h-5 mr-2' />
         <div className="flex gap-x-2 text-[12px] sm:text-[14px] font-semibold">

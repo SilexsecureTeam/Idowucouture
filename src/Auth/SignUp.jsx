@@ -51,12 +51,13 @@ const SignUp = () => {
   return (
     <div className="min-h-screen flex flex-col md:flex-row">
       {/* Left side - Image */}
-      <div className="relative w-full md:w-1/2 md:max-h-screen">
-        <img
+      <div className="relative w-full md:w-1/2 h-[45vh] md:h-screen">
+      <img
           src={auth}
-          alt="Auth visual"
-          className="h-full w-full object-cover md:object-fill object-center"
+         alt="Auth visual"
+          className="w-full h-full object-cover object-center"
         />
+
         {/* <img
           src={logo}
           alt="Logo"
