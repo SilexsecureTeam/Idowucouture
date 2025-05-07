@@ -7,7 +7,7 @@ import SelectFabricToggle from './SelectFabricToggle';
 import { useCart } from "../context/CartHooks";
 
 const Product = () => {
-    const { addToCart } = useCart();
+  const { addToCart } = useCart();
   const { selectedProduct } = useProduct();
   const [quantity, setQuantity] = useState(1);
   const [selectedColor, setSelectedColor] = useState('black');
@@ -16,7 +16,6 @@ const Product = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const timerRef = useRef(null);
   const [isFavorite, setIsFavorite] = useState(false);
-  const [clickCount, setClickCount] = useState(0);
 
   const toggleFavorite = () => {
     setIsFavorite(prev => !prev);
@@ -41,28 +40,21 @@ const Product = () => {
   const price = selectedProduct?.price || 199.00;
   const oldPrice = selectedProduct?.oldPrice || selectedProduct?.originalPrice || 400.00;
 
-    
   const handleAddToCart = () => {
-    const newClickCount = clickCount + 1;
-    setClickCount(newClickCount);
-    setQuantity(newClickCount);
-
+    if (quantity === 0) return; // Prevent adding to cart if quantity is 0
     const productToAdd = {
       id: selectedProduct?.id || 'default-product',
       name: title,
       price: price,
       image: selectedProduct?.image || table,
       color: selectedColor,
-      qty: newClickCount,
+      qty: quantity,
     };
-
-    
-      addToCart({ ...productToAdd, qty: 1 });
-    
+    addToCart(productToAdd);
   };
 
   const decreaseQuantity = () => {
-    if (quantity > 1) setQuantity(quantity - 1);
+    if (quantity > 0) setQuantity(quantity - 1); // Allow quantity to go to 0
   };
 
   const increaseQuantity = () => {
@@ -104,7 +96,7 @@ const Product = () => {
         }
       };
     }
-  }, [isSmallScreen, currentSlide,]);
+  }, [isSmallScreen, currentSlide]);
 
   return (
     <div className="px-5 sm:px-10 lg:px-20 py-8">
@@ -218,7 +210,7 @@ const Product = () => {
           <div className="flex items-center mb-4">
             <span className="text-[24px] font-bold text-[#121212] mr-4">₦{price.toFixed(2)}</span>
             {oldPrice && (
-              <span className="text-[24px] font-normal text-[#6C7275] line-through">₦{oldPrice.toFixed(2)}</span>
+              <span className="text-[24px] font-normal text-[# allegedly6C7275] line-through">₦{oldPrice.toFixed(2)}</span>
             )}
           </div>
 
@@ -271,11 +263,12 @@ const Product = () => {
           </div>
 
           <button 
-          onClick={handleAddToCart}
-          className="md:col-span-4 py-3 mb-2 bg-black cursor-pointer w-full text-center text-white rounded-md hover:bg-gray-800 transition-colors">
-           {clickCount === 0 ? 'Add to Cart' : `Add to Cart (${clickCount})`}
+            onClick={handleAddToCart}
+            className="md:col-span-4 py-3 mb-2 bg-black cursor-pointer w-full text-center text-white rounded-md hover:bg-gray-800 transition-colors"
+          >
+            Add to Cart
           </button>
-           <SelectFabricToggle />
+          <SelectFabricToggle />
           <div className=" pt-4">
             <div className="flex justify-between w-[170px] text-sm text-gray-500 mb-2">
               <span className='text-[#6C7275] text-base'>SKU</span>
@@ -301,26 +294,26 @@ const Product = () => {
               </button>
               {expandedSection === 'details' && (
                 <div className="">
-                    <div className="py-4 border-t-2 border-gray-200">
+                  <div className="py-4 border-t-2 border-gray-200">
                     <span className='text-[#6C7275] text-xl font-medium'>Details</span>
-                <div className="mt-4 text-[#121212]">
-                  <p>
-                    You can use the removable tray for serving. The design makes it easy to put the tray
-                    back afterward because, place it directly in the tray's recessed surface without fussing to find any holes.
-                  </p>
+                    <div className="mt-4 text-[#121212]">
+                      <p>
+                        You can use the removable tray for serving. The design makes it easy to put the tray
+                        back afterward because, place it directly in the tray's recessed surface without fussing to find any holes.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="py-4 border-b border-gray-200">
+                    <span className='text-[#6C7275] text-xl font-medium'>Packaging</span>
+                    <div className="mt-4 text-[#121212]">
+                      <p>Width: 21 ¼"<br />
+                        Height: 3 ½"<br />
+                        Length: 21 ¾"<br />
+                        Weight: 7 lb 8 oz<br />
+                        Packages: 1</p>
+                    </div>
+                  </div>
                 </div>
-                </ div>
-                            <div className="py-4 border-b border-gray-200">
-                            <span className='text-[#6C7275] text-xl font-medium'>Packaging</span>
-                            <div className="mt-4 text-[#121212]">
-                              <p>Width: 21 ¼"<br />
-                              Height: 3 ½"<br />
-                              Length: 21 ¾"<br />
-                              Weight: 7 lb 8 oz<br />
-                              Packages: 1</p>
-                            </div>
-                        </div>
-                        </div>
               )}
             </div>
 
@@ -383,4 +376,4 @@ const Product = () => {
   );
 }
 
-export default Product
+export default Product;
