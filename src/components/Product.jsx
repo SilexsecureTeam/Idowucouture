@@ -3,6 +3,7 @@ import { Heart, Minus, Plus, ChevronDown, ChevronLeft, ChevronRight } from 'luci
 import table from '../assets/blackshirt.png';
 import { useProduct } from '../context/ProductContext';
 import { Link } from 'react-router-dom';
+import SelectFabricToggle from './SelectFabricToggle';
 
 const Product = () => {
   const { selectedProduct } = useProduct();
@@ -235,72 +236,66 @@ const Product = () => {
 
             <button
               onClick={toggleFavorite}
-              className="flex items-center flex-1 justify-center py-1.5 border cursor-pointer border-gray-300 duration-200 rounded-md hover:bg-gray-50 transition-colors"
+              className="flex items-center gap-x-1.5 flex-1 justify-center py-1.5 border cursor-pointer border-gray-300 duration-200 rounded-md hover:bg-gray-50 transition-colors"
             >
               {isFavorite ? (
                 <Heart className="text-red-500 fill-red-500 w-5 h-5" />
               ) : (
                 <Heart className="text-gray-500 w-5 h-5" />
               )}
+              <h2 className='poppins font-medium'>Wishlist</h2>
             </button>
           </div>
 
-          <button className="md:col-span-4 py-3 bg-black cursor-pointer w-full text-center text-white rounded-md hover:bg-gray-800 transition-colors">
+          <button className="md:col-span-4 py-3 mb-2 bg-black cursor-pointer w-full text-center text-white rounded-md hover:bg-gray-800 transition-colors">
             Add to Cart
           </button>
-
-          <div className="border-t border-gray-200 pt-4">
-            <div className="flex justify-between text-sm text-gray-500 mb-2">
+           <SelectFabricToggle />
+          <div className=" pt-4">
+            <div className="flex justify-between w-[170px] text-sm text-gray-500 mb-2">
               <span className='text-[#6C7275] text-base'>SKU</span>
               <span className='text-[#121212] font-medium'>1123</span>
             </div>
-            <div className="flex justify-between text-sm text-gray-500 mb-2">
+            <div className="flex justify-between w-[280px] text-sm text-gray-500 mb-2">
               <span className='text-[#6C7275] text-base'>Categories</span>
               <span className='text-[#121212] font-medium'>Living Room, Modern</span>
             </div>
           </div>
 
-          <div className="border-t border-gray-200 mt-6">
+          <div className=" mt-6">
             <div className="py-4 border-b border-gray-200">
               <button
                 className="flex justify-between items-center w-full text-left font-medium"
                 onClick={() => toggleSection('details')}
               >
-                <span className='text-[#121212] text-xl font-medium'>Details</span>
+                <span className='text-[#121212] text-xl font-medium'>Additional Info</span>
                 <ChevronDown
                   size={20}
-                  className={`transition-transform ${expandedSection === 'details' ? 'rotate-180' : ''}`}
+                  className={`transition-transform cursor-pointer ${expandedSection === 'details' ? 'rotate-180' : ''}`}
                 />
               </button>
               {expandedSection === 'details' && (
-                <div className="mt-4 text-[#6C7275]">
+                <div className="">
+                    <div className="py-4 border-t-2 border-gray-200">
+                    <span className='text-[#6C7275] text-xl font-medium'>Details</span>
+                <div className="mt-4 text-[#121212]">
                   <p>
                     You can use the removable tray for serving. The design makes it easy to put the tray
                     back afterward because, place it directly in the tray's recessed surface without fussing to find any holes.
                   </p>
                 </div>
-              )}
-            </div>
-
-            <div className="py-4 border-b border-gray-200">
-              <button
-                className="flex justify-between items-center w-full text-left font-medium"
-                onClick={() => toggleSection('packaging')}
-              >
-                <span className='text-[#121212] text-xl font-medium'>Packaging</span>
-                <ChevronDown
-                  size={20}
-                  className={`transition-transform ${expandedSection === 'packaging' ? 'rotate-180' : ''}`}
-                />
-              </button>
-              {expandedSection === 'packaging' && (
-                <div className="mt-4 text-[#6C7275]">
-                  <p>Width: 21 ¼"<br />
-                  Height: 3 ½"<br />
-                  Length: 21 ¾"<br />
-                  Weight: 7 lb 8 oz<br />
-                  Packages: 1</p>
-                </div>
+                </ div>
+                            <div className="py-4 border-b border-gray-200">
+                            <span className='text-[#6C7275] text-xl font-medium'>Packaging</span>
+                            <div className="mt-4 text-[#121212]">
+                              <p>Width: 21 ¼"<br />
+                              Height: 3 ½"<br />
+                              Length: 21 ¾"<br />
+                              Weight: 7 lb 8 oz<br />
+                              Packages: 1</p>
+                            </div>
+                        </div>
+                        </div>
               )}
             </div>
 
@@ -312,7 +307,7 @@ const Product = () => {
                 <span className='text-[#121212] text-xl font-medium'>Questions</span>
                 <ChevronDown
                   size={20}
-                  className={`transition-transform ${expandedSection === 'questions' ? 'rotate-180' : ''}`}
+                  className={`transition-transform cursor-pointer ${expandedSection === 'questions' ? 'rotate-180' : ''}`}
                 />
               </button>
               {expandedSection === 'questions' && (
@@ -330,7 +325,7 @@ const Product = () => {
                 <span className='text-[#121212] text-xl font-medium'>Reviews (11)</span>
                 <ChevronDown
                   size={20}
-                  className={`transition-transform ${expandedSection === 'reviews' ? 'rotate-180' : ''}`}
+                  className={`transition-transform cursor-pointer ${expandedSection === 'reviews' ? 'rotate-180' : ''}`}
                 />
               </button>
               {expandedSection === 'reviews' && (
