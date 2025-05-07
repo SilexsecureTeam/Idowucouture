@@ -4,8 +4,10 @@ import table from '../assets/blackshirt.png';
 import { useProduct } from '../context/ProductContext';
 import { Link } from 'react-router-dom';
 import SelectFabricToggle from './SelectFabricToggle';
+import { useCart } from "../context/CartHooks";
 
 const Product = () => {
+    const { addToCart } = useCart();
   const { selectedProduct } = useProduct();
   const [quantity, setQuantity] = useState(1);
   const [selectedColor, setSelectedColor] = useState('black');
@@ -14,6 +16,7 @@ const Product = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const timerRef = useRef(null);
   const [isFavorite, setIsFavorite] = useState(false);
+  const [clickCount, setClickCount] = useState(0);
 
   const toggleFavorite = () => {
     setIsFavorite(prev => !prev);
@@ -37,6 +40,26 @@ const Product = () => {
   const description = "Buy one or buy a few and make every space where you sit more convenient. Light and easy to move around with removable tray top.";
   const price = selectedProduct?.price || 199.00;
   const oldPrice = selectedProduct?.oldPrice || selectedProduct?.originalPrice || 400.00;
+
+    
+  const handleAddToCart = () => {
+    const newClickCount = clickCount + 1;
+    setClickCount(newClickCount);
+    setQuantity(newClickCount);
+
+    const productToAdd = {
+      id: selectedProduct?.id || 'default-product',
+      name: title,
+      price: price,
+      image: selectedProduct?.image || table,
+      color: selectedColor,
+      qty: newClickCount,
+    };
+
+    
+      addToCart({ ...productToAdd, qty: 1 });
+    
+  };
 
   const decreaseQuantity = () => {
     if (quantity > 1) setQuantity(quantity - 1);
@@ -247,8 +270,10 @@ const Product = () => {
             </button>
           </div>
 
-          <button className="md:col-span-4 py-3 mb-2 bg-black cursor-pointer w-full text-center text-white rounded-md hover:bg-gray-800 transition-colors">
-            Add to Cart
+          <button 
+          onClick={handleAddToCart}
+          className="md:col-span-4 py-3 mb-2 bg-black cursor-pointer w-full text-center text-white rounded-md hover:bg-gray-800 transition-colors">
+           {clickCount === 0 ? 'Add to Cart' : `Add to Cart (${clickCount})`}
           </button>
            <SelectFabricToggle />
           <div className=" pt-4">
