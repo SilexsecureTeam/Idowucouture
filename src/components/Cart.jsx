@@ -28,8 +28,8 @@ const Cart = () => {
           <div className="flex flex-col lg:flex-row gap-5 gap-x-5">
             {/* Cart Items */}
             <div className="flex-1 bg-white h-[385px] overflow-y-auto cartshadow px-4 py-1 rounded-xl">
-              {cart.map((item) => (
-                <div key={item.id} className="flex items-center gap-x-2 py-3">
+              {cart.map((item, index) => (
+                <div key={item.id} className={`${index < cart.length - 1 ? 'border-b' : ''} flex border-b-gray-200 items-center gap-x-2 py-3`}>
                   <img
                     src={item.image}
                     alt={item.name}
@@ -99,10 +99,10 @@ const Cart = () => {
                        placeholder="Add promo code"
                        value={promo}
                        onChange={(e) => setPromo(e.target.value)}
-                       className="md:flex-1  px-3 py-2 bg-[#F0F0F0] rounded-4xl text-black outline-none placeholder:text-[#6C7275]"
+                       className="md:flex-1 w-full  px-3 py-2 bg-[#F0F0F0] rounded-4xl text-black outline-none placeholder:text-[#6C7275]"
                     />
-                    <button className="bg-black text-16 rounded-4xl cursor-pointer text-white px-6 py-2">
-      Apply
+                    <button className="bg-black text-16 rounded-4xl cursor-pointer text-white px-4 md:px-6 py-2">
+                          Apply
                     </button>
                 </div>
                 <button className="w-full flex justify-center gap-x-2 cursor-pointer bg-black text-white py-3 rounded-4xl mt-4 font-semibold hover:bg-gray-800 transition">

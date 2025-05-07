@@ -17,6 +17,7 @@ const HomePage = () => {
     <div className='w-full mx-auto max-w-[1500px]'>
       <Notification />
       <Header />
+      <div className="absolute top-26 left-0 w-full">
       <Hero />
       <FeaturedSlider />
       <Category />
@@ -27,6 +28,7 @@ const HomePage = () => {
       <Newsfeed />
       <Image />
       <Footer />
+      </div>
     </div>
   )
 }
