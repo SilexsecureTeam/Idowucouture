@@ -75,9 +75,11 @@ const Header = () => {
               <li className="text-[#6C7275] cursor-pointer font-medium" onClick={() => setMenuOpen(false)}>
                 Shop
               </li>
-              <li className="text-[#6C7275] cursor-pointer font-medium" onClick={() => setMenuOpen(false)}>
+              <Link to='/product' onClick={() => setMenuOpen(false)}>
+              <li className="text-[#6C7275] cursor-pointer font-medium" >
                 Product
               </li>
+              </Link>
               <li className="text-[#6C7275] cursor-pointer font-medium" onClick={() => setMenuOpen(false)}>
                 Contact Us
               </li>

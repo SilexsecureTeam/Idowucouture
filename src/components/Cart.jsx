@@ -16,7 +16,7 @@ const Cart = () => {
     <div className="bg-white px-5 sm:px-10 lg:px-20 flex flex-col">
       <div className="flex items-center gap-x-1 mt-2 font-normal text-black text-[16px]">
         <h1 className="opacity-60 flex items-center">
-          Home <ChevronRightIcon size={15} />
+        <Link to='/'>  Home </Link> <ChevronRightIcon size={15} />
         </h1>{" "}
         <span>Cart</span>
       </div>
