@@ -9,8 +9,10 @@ const CartPage = () => {
     <div>
       <Notification />
       <Header />
+      <div className="absolute top-26 left-0 w-full">
       <Cart />
       <CartFooter />
+      </div>
     </div>
   )
 }
