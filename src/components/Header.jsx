@@ -31,7 +31,7 @@ const Header = () => {
           </Link>
           <li className="text-[#6C7275] cursor-pointer font-medium">Shop</li>
           <Link to='/product'><li className="text-[#6C7275] cursor-pointer font-medium">Product</li></Link>
-          <li className="text-[#6C7275] cursor-pointer font-medium">Contact Us</li>
+          <Link to='/contact'><li className="text-[#6C7275] cursor-pointer font-medium">Contact Us</li> </Link>
         </ul>
 
         {/* Icons */}

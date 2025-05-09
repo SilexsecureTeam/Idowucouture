@@ -12,6 +12,7 @@ import SignupPage from './pages/SignupPage';
 import NotfoundPage from './pages/NotfoundPage';
 import ProductPage from "./pages/ProductPage";
 import TermsPage from "./pages/TermsPage";
+import ContactPage from "./pages/ContactPage";
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
       <Route path="/cart" element={<CartPage />} />
       <Route path="/product" element={<ProductPage />} />
       <Route path="/term" element={<TermsPage />} />
+      <Route path="/contact" element={<ContactPage />} />
       <Route path="*" element={<NotfoundPage />} />
     </Routes> 
     </ ProductProvider>
