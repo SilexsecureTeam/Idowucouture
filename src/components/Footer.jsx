@@ -6,6 +6,7 @@ import card from "../assets/card.png";
 import stripe from "../assets/stripe.png";
 import paypal from "../assets/paypal.png";
 import pay from "../assets/pay.png";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   // State to manage visibility of each section's list
@@ -79,7 +80,7 @@ const Footer = () => {
             <ul className={`${isOpen.info ? "block" : "hidden"} md:block space-y-3 text-[14px] text-[#fefefe]`}>
               <li><a href="#" className="hover:text-white transition">Shipping Policy</a></li>
               <li><a href="#" className="hover:text-white transition">Return & Refund</a></li>
-              <li><a href="#" className="hover:text-white transition">Terms and Condition</a></li>
+              <Link to='term'> <li className="hover:text-white transition">Terms and Condition</li> </Link>
               <li><a href="#" className="hover:text-white transition">FAQs</a></li>
             </ul>
           </div>
@@ -117,10 +118,10 @@ const Footer = () => {
             <img src={paypal} alt="Apple Pay" className="h-6" />
           </div>
           {/* Privacy Policy & Terms */}
-          <div className="flex gap-4 text-[#6C7275] w-fit mx-auto poppins font-normal text-[12px]">
-            <a href="#" className="hover:text-white transition">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition">Terms & Conditions</a>
-          </div>
+          <ul className="flex gap-4 text-[#6C7275] w-fit mx-auto poppins font-normal text-[12px]">
+            <Link to='privacypolicy'><li className="hover:text-white transition">Privacy Policy</li> </Link>
+            <li className="hover:text-white transition">Terms & Conditions</li>
+          </ul>
           {/* Copyright */}
           <div className="text-[#E8ECEF] pop Pins text-center font-normal text-[12px]">
             Copyright © 2025 Idowucouture. All rights reserved

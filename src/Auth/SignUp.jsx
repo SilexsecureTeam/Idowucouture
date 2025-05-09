@@ -55,7 +55,7 @@ const SignUp = () => {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col md:flex-row">
       {/* Left side - Image */}
-      <div className="relative w-full md:w-1/2 h-[45vh] md:h-screen overflow-hidden">
+      <div className="relative hidden md:block w-full md:w-1/2 h-[45vh] md:h-screen overflow-hidden">
               <img
                 src={auth}
                 alt="Auth visual"
