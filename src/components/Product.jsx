@@ -4,7 +4,7 @@ import table from '../assets/blackshirt.png';
 import { useProduct } from '../context/ProductContext';
 import { Link } from 'react-router-dom';
 import SelectFabricToggle from './SelectFabricToggle';
-import { useCart } from "../context/CartHooks";
+import { useCart } from '../context/CartHooks';
 
 const Product = () => {
   const { addToCart } = useCart();
@@ -18,7 +18,7 @@ const Product = () => {
   const [isFavorite, setIsFavorite] = useState(false);
 
   const toggleFavorite = () => {
-    setIsFavorite(prev => !prev);
+    setIsFavorite((prev) => !prev);
   };
 
   const colors = [
@@ -29,32 +29,34 @@ const Product = () => {
   ];
 
   const productImages = [
-    { src: selectedProduct?.image || table, alt: `${selectedProduct?.name || "Black Shirt"} - Main View` },
-    { src: selectedProduct?.image || table, alt: `${selectedProduct?.name || "Black Shirt"} - Side View` },
-    { src: selectedProduct?.image || table, alt: `${selectedProduct?.name || "Black Shirt"} - Detail View` },
-    { src: selectedProduct?.image || table, alt: `${selectedProduct?.name || "Black Shirt"} - Lifestyle View` },
+    { src: selectedProduct?.image || table, alt: `${selectedProduct?.name || 'Black Shirt'} - Main View` },
+    { src: selectedProduct?.image || table, alt: `${selectedProduct?.name || 'Black Shirt'} - Side View` },
+    { src: selectedProduct?.image || table, alt: `${selectedProduct?.name || 'Black Shirt'} - Detail View` },
+    { src: selectedProduct?.image || table, alt: `${selectedProduct?.name || 'Black Shirt'} - Lifestyle View` },
   ];
 
-  const title = selectedProduct?.name || "Black Shirt";
-  const description = "Buy one or buy a few and make every space where you sit more convenient. Light and easy to move around with removable tray top.";
-  const price = selectedProduct?.price || 199.00;
-  const oldPrice = selectedProduct?.oldPrice || selectedProduct?.originalPrice || 400.00;
+  const title = selectedProduct?.name || 'Black Shirt';
+  const description =
+    'Buy one or buy a few and make every space where you sit more convenient. Light and easy to move around with removable tray top.';
+  const price = selectedProduct?.price || 199.0;
+  const oldPrice = selectedProduct?.oldPrice || selectedProduct?.originalPrice || 400.0;
 
   const handleAddToCart = () => {
-    if (quantity === 0) return; // Prevent adding to cart if quantity is 0
+    if (quantity <= 0 || !selectedProduct) return; // Prevent adding if quantity is 0 or no product
     const productToAdd = {
       id: selectedProduct?.id || 'default-product',
       name: title,
       price: price,
       image: selectedProduct?.image || table,
       color: selectedColor,
-      qty: quantity,
+      qty: quantity, // Use the selected quantity
     };
     addToCart(productToAdd);
+    setQuantity(1); // Reset quantity after adding to cart
   };
 
   const decreaseQuantity = () => {
-    if (quantity > 0) setQuantity(quantity - 1); // Allow quantity to go to 0
+    if (quantity > 1) setQuantity(quantity - 1); // Prevent going below 1
   };
 
   const increaseQuantity = () => {
@@ -98,21 +100,42 @@ const Product = () => {
     }
   }, [isSmallScreen, currentSlide]);
 
+  // Render "No Product Clicked Yet" if no product is selected
+  if (!selectedProduct) {
+    return (
+      <div className="px-5 sm:px-10 lg:px-20 py-8 text-center text-gray-500">
+        <p>No product clicked yet.</p>
+      </div>
+    );
+  }
+
   return (
     <div className="px-5 sm:px-10 lg:px-20 py-8">
       <nav className="flex items-center gap-x-2 text-sm mb-6">
-        <Link to='/'> <a href="#" className="text-[#605F5F]">Home</a> </Link>
+        <Link to="/">
+          <a href="#" className="text-[#605F5F]">
+            Home
+          </a>
+        </Link>
         <ChevronRight size={16} className=" text-gray-400" />
-        <a href="#" className="text-[#605F5F] font-medium">Product</a>
+        <a href="#" className="text-[#605F5F] font-medium">
+          Product
+        </a>
         <ChevronRight size={16} className=" text-gray-400" />
-        <a href="#" className="text-black font-medium">{title}</a>
+        <a href="#" className="text-black font-medium">
+          {title}
+        </a>
       </nav>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="space-y-4">
           <div className="relative">
-            <span className="absolute md:hidden top-4 left-4 bg-white text-black px-2 py-1 text-xs font-semibold uppercase z-10">New</span>
-            <span className="absolute md:hidden top-4 right-4 bg-green-500 text-black px-2 py-1 text-xs font-semibold uppercase z-10">-20%</span>
+            <span className="absolute md:hidden top-4 left-4 bg-white text-black px-2 py-1 text-xs font-semibold uppercase z-10">
+              New
+            </span>
+            <span className="absolute md:hidden top-4 right-4 bg-green-500 text-black px-2 py-1 text-xs font-semibold uppercase z-10">
+              -20%
+            </span>
 
             <div className="relative">
               <div className={`overflow-hidden rounded ${isSmallScreen ? 'block' : 'hidden md:hidden'}`}>
@@ -164,8 +187,12 @@ const Product = () => {
                     alt={productImages[0].alt}
                     className="w-full h-70 object-fill rounded"
                   />
-                  <span className="absolute md:block hidden top-4 left-4 bg-white text-black px-2 py-1 text-xs font-semibold uppercase z-10">New</span>
-                  <span className="absolute md:block hidden top-4 right-4 bg-green-500 text-black px-2 py-1 text-xs font-semibold uppercase z-10">-20%</span>
+                  <span className="absolute md:block hidden top-4 left-4 bg-white text-black px-2 py-1 text-xs font-semibold uppercase z-10">
+                    New
+                  </span>
+                  <span className="absolute md:block hidden top-4 right-4 bg-green-500 text-black px-2 py-1 text-xs font-semibold uppercase z-10">
+                    -20%
+                  </span>
                 </div>
                 <img
                   src={productImages[0].src}
@@ -193,24 +220,35 @@ const Product = () => {
           <div className="flex items-center mb-2">
             <div className="flex">
               {[1, 2, 3, 4, 5].map((star) => (
-                <svg key={star} className="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                <svg
+                  key={star}
+                  className="w-4 h-4 text-yellow-400"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 0 00.951-.69l1.07-3.292z" />
                 </svg>
               ))}
             </div>
-            <span className="ml-2 text-[12px] font-normal text-[#141718] poppins">5 Reviews</span>
+            <span className="ml-2 text-[12px] font-normal text-[#141718] poppins">
+              5 Reviews
+            </span>
           </div>
 
-          <h1 className="text-2xl md:text-[40px] font-normal poppins text-[#141718] mb-3">{title}</h1>
+          <h1 className="text-2xl md:text-[40px] font-normal poppins text-[#141718] mb-3">
+            {title}
+          </h1>
 
-          <p className="text-[#6C7275] text-base font-normal mb-4">
-            {description}
-          </p>
+          <p className="text-[#6C7275] text-base font-normal mb-4">{description}</p>
 
           <div className="flex items-center mb-4">
-            <span className="text-[24px] font-bold text-[#121212] mr-4">₦{price.toFixed(2)}</span>
+            <span className="text-[24px] font-bold text-[#121212] mr-4">
+              ₦{price.toFixed(2)}
+            </span>
             {oldPrice && (
-              <span className="text-[24px] font-normal text-[# allegedly6C7275] line-through">₦{oldPrice.toFixed(2)}</span>
+              <span className="text-[24px] font-normal text-[#6C7275] line-through">
+                ₦{oldPrice.toFixed(2)}
+              </span>
             )}
           </div>
 
@@ -221,7 +259,9 @@ const Product = () => {
 
           <div className="mb-6">
             <h3 className="font-medium text-[#6C7275] mb-2">Choose Color</h3>
-            <p className="mt-2 text-sm text-[#6C7275] mb-2">Selected: {selectedColor.charAt(0).toUpperCase() + selectedColor.slice(1)}</p>
+            <p className="mt-2 text-sm text-[#6C7275] mb-2">
+              Selected: {selectedColor.charAt(0).toUpperCase() + selectedColor.slice(1)}
+            </p>
             <div className="flex space-x-4">
               {colors.map((color) => (
                 <img
@@ -229,7 +269,9 @@ const Product = () => {
                   src={color.src}
                   alt={color.alt}
                   className={`w-8 h-8 rounded-md border object-fill cursor-pointer ${
-                    selectedColor === color.id ? 'ring-2 ring-offset-1 ring-black' : 'ring-1 ring-gray-200'
+                    selectedColor === color.id
+                      ? 'ring-2 ring-offset-1 ring-black'
+                      : 'ring-1 ring-gray-200'
                   }`}
                   onClick={() => setSelectedColor(color.id)}
                   aria-label={`Select ${color.name} color`}
@@ -238,7 +280,7 @@ const Product = () => {
             </div>
           </div>
 
-          <div className='flex gap-x-3 items-center w-full mb-5'>
+          <div className="flex gap-x-3 items-center w-full mb-5">
             <div className="flex rounded-lg p-1 bg-[#F5F5F5] w-fit items-center space-x-4">
               <button onClick={decreaseQuantity} className="p-2">
                 <Minus size={16} />
@@ -258,11 +300,11 @@ const Product = () => {
               ) : (
                 <Heart className="text-gray-500 w-5 h-5" />
               )}
-              <h2 className='poppins font-medium'>Wishlist</h2>
+              <h2 className="poppins font-medium">Wishlist</h2>
             </button>
           </div>
 
-          <button 
+          <button
             onClick={handleAddToCart}
             className="md:col-span-4 py-3 mb-2 bg-black cursor-pointer w-full text-center text-white rounded-md hover:bg-gray-800 transition-colors"
           >
@@ -271,12 +313,12 @@ const Product = () => {
           <SelectFabricToggle />
           <div className=" pt-4">
             <div className="flex justify-between w-[170px] text-sm text-gray-500 mb-2">
-              <span className='text-[#6C7275] text-base'>SKU</span>
-              <span className='text-[#121212] font-medium'>1123</span>
+              <span className="text-[#6C7275] text-base">SKU</span>
+              <span className="text-[#121212] font-medium">1123</span>
             </div>
             <div className="flex justify-between w-[280px] text-sm text-gray-500 mb-2">
-              <span className='text-[#6C7275] text-base'>Categories</span>
-              <span className='text-[#121212] font-medium'>Living Room, Modern</span>
+              <span className="text-[#6C7275] text-base">Categories</span>
+              <span className="text-[#121212] font-medium">Living Room, Modern</span>
             </div>
           </div>
 
@@ -286,31 +328,40 @@ const Product = () => {
                 className="flex justify-between items-center w-full text-left font-medium"
                 onClick={() => toggleSection('details')}
               >
-                <span className='text-[#121212] text-xl font-medium'>Additional Info</span>
+                <span className="text-[#121212] text-xl font-medium">Additional Info</span>
                 <ChevronDown
                   size={20}
-                  className={`transition-transform cursor-pointer ${expandedSection === 'details' ? 'rotate-180' : ''}`}
+                  className={`transition-transform cursor-pointer ${
+                    expandedSection === 'details' ? 'rotate-180' : ''
+                  }`}
                 />
               </button>
               {expandedSection === 'details' && (
                 <div className="">
                   <div className="py-4 border-t-2 border-gray-200">
-                    <span className='text-[#6C7275] text-xl font-medium'>Details</span>
+                    <span className="text-[#6C7275] text-xl font-medium">Details</span>
                     <div className="mt-4 text-[#121212]">
                       <p>
-                        You can use the removable tray for serving. The design makes it easy to put the tray
-                        back afterward because, place it directly in the tray's recessed surface without fussing to find any holes.
+                        You can use the removable tray for serving. The design makes it easy to put
+                        the tray back afterward because, place it directly in the tray's recessed
+                        surface without fussing to find any holes.
                       </p>
                     </div>
                   </div>
                   <div className="py-4 border-b border-gray-200">
-                    <span className='text-[#6C7275] text-xl font-medium'>Packaging</span>
+                    <span className="text-[#6C7275] text-xl font-medium">Packaging</span>
                     <div className="mt-4 text-[#121212]">
-                      <p>Width: 21 ¼"<br />
-                        Height: 3 ½"<br />
-                        Length: 21 ¾"<br />
-                        Weight: 7 lb 8 oz<br />
-                        Packages: 1</p>
+                      <p>
+                        Width: 21 ¼"
+                        <br />
+                        Height: 3 ½"
+                        <br />
+                        Length: 21 ¾"
+                        <br />
+                        Weight: 7 lb 8 oz
+                        <br />
+                        Packages: 1
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -322,10 +373,12 @@ const Product = () => {
                 className="flex justify-between items-center w-full text-left font-medium"
                 onClick={() => toggleSection('questions')}
               >
-                <span className='text-[#121212] text-xl font-medium'>Questions</span>
+                <span className="text-[#121212] text-xl font-medium">Questions</span>
                 <ChevronDown
                   size={20}
-                  className={`transition-transform cursor-pointer ${expandedSection === 'questions' ? 'rotate-180' : ''}`}
+                  className={`transition-transform cursor-pointer ${
+                    expandedSection === 'questions' ? 'rotate-180' : ''
+                  }`}
                 />
               </button>
               {expandedSection === 'questions' && (
@@ -340,10 +393,12 @@ const Product = () => {
                 className="flex justify-between items-center w-full text-left font-medium"
                 onClick={() => toggleSection('reviews')}
               >
-                <span className='text-[#121212] text-xl font-medium'>Reviews (11)</span>
+                <span className="text-[#121212] text-xl font-medium">Reviews (11)</span>
                 <ChevronDown
                   size={20}
-                  className={`transition-transform cursor-pointer ${expandedSection === 'reviews' ? 'rotate-180' : ''}`}
+                  className={`transition-transform cursor-pointer ${
+                    expandedSection === 'reviews' ? 'rotate-180' : ''
+                  }`}
                 />
               </button>
               {expandedSection === 'reviews' && (
@@ -352,8 +407,13 @@ const Product = () => {
                     <div className="flex items-center mb-1">
                       <div className="flex">
                         {[1, 2, 3, 4, 5].map((star) => (
-                          <svg key={star} className="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                          <svg
+                            key={star}
+                            className="w-4 h-4 text-yellow-400"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                          >
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 0 00.951-.69l1.07-3.292z" />
                           </svg>
                         ))}
                       </div>
@@ -361,7 +421,9 @@ const Product = () => {
                       <span className="mx-2 text-[#6C7275]">•</span>
                       <span className="text-sm text-[#6C7275]">March 15, 2025</span>
                     </div>
-                    <p className="text-sm text-[#6C7275]">Perfect for my small apartment. Well built and very stylish!</p>
+                    <p className="text-sm text-[#6C7275]">
+                      Perfect for my small apartment. Well built and very stylish!
+                    </p>
                   </div>
                   <button className="text-blue-600 hover:text-blue-800 text-sm font-medium">
                     View All 11 Reviews
@@ -374,6 +436,6 @@ const Product = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Product;

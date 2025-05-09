@@ -79,7 +79,7 @@ const Footer = () => {
             <ul className={`${isOpen.info ? "block" : "hidden"} md:block space-y-3 text-[14px] text-[#fefefe]`}>
               <li><a href="#" className="hover:text-white transition">Shipping Policy</a></li>
               <li><a href="#" className="hover:text-white transition">Return & Refund</a></li>
-              <li><a href="#" className="hover:text-white transition">Support</a></li>
+              <li><a href="#" className="hover:text-white transition">Terms and Condition</a></li>
               <li><a href="#" className="hover:text-white transition">FAQs</a></li>
             </ul>
           </div>
@@ -123,13 +123,13 @@ const Footer = () => {
           </div>
           {/* Copyright */}
           <div className="text-[#E8ECEF] pop Pins text-center font-normal text-[12px]">
-            Copyright © 2023 3legant. All rights reserved
+            Copyright © 2025 Idowucouture. All rights reserved
           </div>
         </div>
         {/* Laptop view  */}
       <div className="hidden md:flex w-full md:items-center md:justify-between gap-6">
           <div className="text-[#E8ECEF] poppins font-normal text-[12px]">
-            Copyright © 2023 3legant. All rights reserved | 
+            Copyright © 2025 Idowucouture. All rights reserved | 
             <a href="#" className="text-[#6C7275] ml-1">Privacy Policy</a> 
             <a href="#" className="text-[#6C7275] ml-1">Terms & Conditions</a>
           </div>

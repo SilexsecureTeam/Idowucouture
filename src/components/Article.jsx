@@ -42,7 +42,7 @@ const Article = () => {
               <img
                 src={article.image}
                 alt={article.title}
-                className="w-full h-56 md:h-64 object-cover mb-2"
+                className="w-full h-60 md:h-64 object-cover mb-2"
               />
               <div className=" bottom-4 left-4">
                 <h3 className="text-[20px] poppins text-[#23262F] font-medium mb-1 md:mb-2">{article.title}</h3>
