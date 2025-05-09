@@ -4,8 +4,8 @@ import Secondletter from './Secondletter';
 const Terms = () => {
     return (
         <div> 
-            <div className="relative w-full h-[60vh] overflow-hidden">
-  <div className="absolute inset-0 min-w-[100vw] min-h-[60vh]">
+            <div className="relative w-full h-[50vh] overflow-hidden">
+  <div className="absolute inset-0 min-w-[100vw] min-h-[50vh]">
     <img src={term} alt="term" className="h-full w-full object-cover object-center" />
   </div>
   <div className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-[#38CB89] px-5 py-3 md:text-5xl text-2xl font-bold text-white">
