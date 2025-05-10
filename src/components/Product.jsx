@@ -1,17 +1,24 @@
-import { useState, useEffect, useRef } from 'react';
-import { Heart, Minus, Plus, ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
-import table from '../assets/blackshirt.png';
-import { useProduct } from '../context/ProductContext';
-import { Link } from 'react-router-dom';
-import SelectFabricToggle from './SelectFabricToggle';
-import { useCart } from '../context/CartHooks';
+import { useState, useEffect, useRef } from "react";
+import {
+  Heart,
+  Minus,
+  Plus,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
+import table from "../assets/fimage2.jpg";
+import { useProduct } from "../context/ProductContext";
+import { Link } from "react-router-dom";
+import SelectFabricToggle from "./SelectFabricToggle";
+import { useCart } from "../context/CartHooks";
 
 const Product = () => {
   const { addToCart } = useCart();
   const { selectedProduct } = useProduct();
   const [quantity, setQuantity] = useState(1);
-  const [selectedColor, setSelectedColor] = useState('black');
-  const [expandedSection, setExpandedSection] = useState('details');
+  const [selectedColor, setSelectedColor] = useState("black");
+  const [expandedSection, setExpandedSection] = useState("details");
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const timerRef = useRef(null);
@@ -22,29 +29,62 @@ const Product = () => {
   };
 
   const colors = [
-    { id: 'black', name: 'Black', src: selectedProduct?.image || table, alt: 'image' },
-    { id: 'gray', name: 'Gray', src: selectedProduct?.image || table, alt: 'image' },
-    { id: 'red', name: 'Red', src: selectedProduct?.image || table, alt: 'image' },
-    { id: 'white', name: 'White', src: selectedProduct?.image || table, alt: 'image' },
+    {
+      id: "black",
+      name: "Black",
+      src: selectedProduct?.image || table,
+      alt: "image",
+    },
+    {
+      id: "gray",
+      name: "Gray",
+      src: selectedProduct?.image || table,
+      alt: "image",
+    },
+    {
+      id: "red",
+      name: "Red",
+      src: selectedProduct?.image || table,
+      alt: "image",
+    },
+    {
+      id: "white",
+      name: "White",
+      src: selectedProduct?.image || table,
+      alt: "image",
+    },
   ];
 
   const productImages = [
-    { src: selectedProduct?.image || table, alt: `${selectedProduct?.name || 'Black Shirt'} - Main View` },
-    { src: selectedProduct?.image || table, alt: `${selectedProduct?.name || 'Black Shirt'} - Side View` },
-    { src: selectedProduct?.image || table, alt: `${selectedProduct?.name || 'Black Shirt'} - Detail View` },
-    { src: selectedProduct?.image || table, alt: `${selectedProduct?.name || 'Black Shirt'} - Lifestyle View` },
+    {
+      src: selectedProduct?.image || table,
+      alt: `${selectedProduct?.name || "Black Shirt"} - Main View`,
+    },
+    {
+      src: selectedProduct?.image || table,
+      alt: `${selectedProduct?.name || "Black Shirt"} - Side View`,
+    },
+    {
+      src: selectedProduct?.image || table,
+      alt: `${selectedProduct?.name || "Black Shirt"} - Detail View`,
+    },
+    {
+      src: selectedProduct?.image || table,
+      alt: `${selectedProduct?.name || "Black Shirt"} - Lifestyle View`,
+    },
   ];
 
-  const title = selectedProduct?.name || 'Black Shirt';
+  const title = selectedProduct?.name || "Black Shirt";
   const description =
-    'Buy one or buy a few and make every space where you sit more convenient. Light and easy to move around with removable tray top.';
+    "Buy one or buy a few and make every space where you sit more convenient. Light and easy to move around with removable tray top.";
   const price = selectedProduct?.price || 199.0;
-  const oldPrice = selectedProduct?.oldPrice || selectedProduct?.originalPrice || 400.0;
+  const oldPrice =
+    selectedProduct?.oldPrice || selectedProduct?.originalPrice || 400.0;
 
   const handleAddToCart = () => {
     if (quantity <= 0 || !selectedProduct) return; // Prevent adding if quantity is 0 or no product
     const productToAdd = {
-      id: selectedProduct?.id || 'default-product',
+      id: selectedProduct?.id || "default-product",
       name: title,
       price: price,
       image: selectedProduct?.image || table,
@@ -68,11 +108,15 @@ const Product = () => {
   };
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev === productImages.length - 1 ? 0 : prev + 1));
+    setCurrentSlide((prev) =>
+      prev === productImages.length - 1 ? 0 : prev + 1
+    );
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev === 0 ? productImages.length - 1 : prev - 1));
+    setCurrentSlide((prev) =>
+      prev === 0 ? productImages.length - 1 : prev - 1
+    );
   };
 
   useEffect(() => {
@@ -81,9 +125,9 @@ const Product = () => {
     };
 
     checkScreenSize();
-    window.addEventListener('resize', checkScreenSize);
+    window.addEventListener("resize", checkScreenSize);
 
-    return () => window.removeEventListener('resize', checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
 
   useEffect(() => {
@@ -138,7 +182,11 @@ const Product = () => {
             </span>
 
             <div className="relative">
-              <div className={`overflow-hidden rounded ${isSmallScreen ? 'block' : 'hidden md:hidden'}`}>
+              <div
+                className={`overflow-hidden rounded ${
+                  isSmallScreen ? "block" : "hidden md:hidden"
+                }`}
+              >
                 <div
                   className="flex transition-transform duration-300 ease-in-out"
                   style={{ transform: `translateX(-${currentSlide * 100}%)` }}
@@ -172,7 +220,7 @@ const Product = () => {
                       key={index}
                       onClick={() => setCurrentSlide(index)}
                       className={`w-2 h-2 rounded-full ${
-                        currentSlide === index ? 'bg-white' : 'bg-white/50'
+                        currentSlide === index ? "bg-white" : "bg-white/50"
                       }`}
                       aria-label={`Go to slide ${index + 1}`}
                     />
@@ -239,7 +287,9 @@ const Product = () => {
             {title}
           </h1>
 
-          <p className="text-[#6C7275] text-base font-normal mb-4">{description}</p>
+          <p className="text-[#6C7275] text-base font-normal mb-4">
+            {description}
+          </p>
 
           <div className="flex items-center mb-4">
             <span className="text-[24px] font-bold text-[#121212] mr-4">
@@ -253,14 +303,17 @@ const Product = () => {
           </div>
 
           <div className="mb-6">
-            <h3 className="font-medium text-base text-[#6C7275] mb-2">Measurements</h3>
+            <h3 className="font-medium text-base text-[#6C7275] mb-2">
+              Measurements
+            </h3>
             <p className="text-xl text-[#000000]">17 1/2x20 5/8 </p>
           </div>
 
           <div className="mb-6">
             <h3 className="font-medium text-[#6C7275] mb-2">Choose Color</h3>
             <p className="mt-2 text-sm text-[#6C7275] mb-2">
-              Selected: {selectedColor.charAt(0).toUpperCase() + selectedColor.slice(1)}
+              Selected:{" "}
+              {selectedColor.charAt(0).toUpperCase() + selectedColor.slice(1)}
             </p>
             <div className="flex space-x-4">
               {colors.map((color) => (
@@ -270,8 +323,8 @@ const Product = () => {
                   alt={color.alt}
                   className={`w-8 h-8 rounded-md border object-fill cursor-pointer ${
                     selectedColor === color.id
-                      ? 'ring-2 ring-offset-1 ring-black'
-                      : 'ring-1 ring-gray-200'
+                      ? "ring-2 ring-offset-1 ring-black"
+                      : "ring-1 ring-gray-200"
                   }`}
                   onClick={() => setSelectedColor(color.id)}
                   aria-label={`Select ${color.name} color`}
@@ -318,7 +371,9 @@ const Product = () => {
             </div>
             <div className="flex justify-between w-[280px] text-sm text-gray-500 mb-2">
               <span className="text-[#6C7275] text-base">Categories</span>
-              <span className="text-[#121212] font-medium">Living Room, Modern</span>
+              <span className="text-[#121212] font-medium">
+                Living Room, Modern
+              </span>
             </div>
           </div>
 
@@ -326,30 +381,37 @@ const Product = () => {
             <div className="py-4 border-b border-gray-200">
               <button
                 className="flex justify-between items-center w-full text-left font-medium"
-                onClick={() => toggleSection('details')}
+                onClick={() => toggleSection("details")}
               >
-                <span className="text-[#121212] text-xl font-medium">Additional Info</span>
+                <span className="text-[#121212] text-xl font-medium">
+                  Additional Info
+                </span>
                 <ChevronDown
                   size={20}
                   className={`transition-transform cursor-pointer ${
-                    expandedSection === 'details' ? 'rotate-180' : ''
+                    expandedSection === "details" ? "rotate-180" : ""
                   }`}
                 />
               </button>
-              {expandedSection === 'details' && (
+              {expandedSection === "details" && (
                 <div className="">
                   <div className="py-4 border-t-2 border-gray-200">
-                    <span className="text-[#6C7275] text-xl font-medium">Details</span>
+                    <span className="text-[#6C7275] text-xl font-medium">
+                      Details
+                    </span>
                     <div className="mt-4 text-[#121212]">
                       <p>
-                        You can use the removable tray for serving. The design makes it easy to put
-                        the tray back afterward because, place it directly in the tray's recessed
-                        surface without fussing to find any holes.
+                        You can use the removable tray for serving. The design
+                        makes it easy to put the tray back afterward because,
+                        place it directly in the tray's recessed surface without
+                        fussing to find any holes.
                       </p>
                     </div>
                   </div>
                   <div className="py-4 border-b border-gray-200">
-                    <span className="text-[#6C7275] text-xl font-medium">Packaging</span>
+                    <span className="text-[#6C7275] text-xl font-medium">
+                      Packaging
+                    </span>
                     <div className="mt-4 text-[#121212]">
                       <p>
                         Width: 21 ¼"
@@ -371,17 +433,19 @@ const Product = () => {
             <div className="py-4 border-b border-gray-200">
               <button
                 className="flex justify-between items-center w-full text-left font-medium"
-                onClick={() => toggleSection('questions')}
+                onClick={() => toggleSection("questions")}
               >
-                <span className="text-[#121212] text-xl font-medium">Questions</span>
+                <span className="text-[#121212] text-xl font-medium">
+                  Questions
+                </span>
                 <ChevronDown
                   size={20}
                   className={`transition-transform cursor-pointer ${
-                    expandedSection === 'questions' ? 'rotate-180' : ''
+                    expandedSection === "questions" ? "rotate-180" : ""
                   }`}
                 />
               </button>
-              {expandedSection === 'questions' && (
+              {expandedSection === "questions" && (
                 <div className="mt-4 text-[#6C7275]">
                   <p>No questions asked yet. Ask the first one!</p>
                 </div>
@@ -391,17 +455,19 @@ const Product = () => {
             <div className="py-4">
               <button
                 className="flex justify-between items-center w-full text-left font-medium"
-                onClick={() => toggleSection('reviews')}
+                onClick={() => toggleSection("reviews")}
               >
-                <span className="text-[#121212] text-xl font-medium">Reviews (11)</span>
+                <span className="text-[#121212] text-xl font-medium">
+                  Reviews (11)
+                </span>
                 <ChevronDown
                   size={20}
                   className={`transition-transform cursor-pointer ${
-                    expandedSection === 'reviews' ? 'rotate-180' : ''
+                    expandedSection === "reviews" ? "rotate-180" : ""
                   }`}
                 />
               </button>
-              {expandedSection === 'reviews' && (
+              {expandedSection === "reviews" && (
                 <div className="mt-4 text-gray-600">
                   <div className="mb-4">
                     <div className="flex items-center mb-1">
@@ -419,10 +485,13 @@ const Product = () => {
                       </div>
                       <span className="ml-2 text-sm font-medium">John D.</span>
                       <span className="mx-2 text-[#6C7275]">•</span>
-                      <span className="text-sm text-[#6C7275]">March 15, 2025</span>
+                      <span className="text-sm text-[#6C7275]">
+                        March 15, 2025
+                      </span>
                     </div>
                     <p className="text-sm text-[#6C7275]">
-                      Perfect for my small apartment. Well built and very stylish!
+                      Perfect for my small apartment. Well built and very
+                      stylish!
                     </p>
                   </div>
                   <button className="text-blue-600 hover:text-blue-800 text-sm font-medium">
