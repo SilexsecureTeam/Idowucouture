@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import logo from "../assets/logo.png";
-import { SearchIcon, ShoppingBagIcon, UserIcon, MenuIcon, XIcon } from "lucide-react";
+import {
+  SearchIcon,
+  ShoppingBagIcon,
+  UserIcon,
+  MenuIcon,
+  XIcon,
+} from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartHooks";
 
@@ -20,7 +26,7 @@ const Header = () => {
   };
 
   return (
-    <div className='fixed top-10 left-0 w-full z-50'>
+    <div className="fixed top-10 left-0 w-full z-50">
       <div className="flex px-5 sm:px-10 lg:px-20 items-center justify-between h-16 bg-white relative">
         <img src={logo} alt="logo" className="h-16" />
 
@@ -30,8 +36,16 @@ const Header = () => {
             <li className="cursor-pointer font-medium">Home</li>
           </Link>
           <li className="text-[#6C7275] cursor-pointer font-medium">Shop</li>
-          <Link to='/product'><li className="text-[#6C7275] cursor-pointer font-medium">Product</li></Link>
-          <Link to='/contact'><li className="text-[#6C7275] cursor-pointer font-medium">Contact Us</li> </Link>
+          <Link to="/product">
+            <li className="text-[#6C7275] cursor-pointer font-medium">
+              Product
+            </li>
+          </Link>
+          <Link to="/contact">
+            <li className="text-[#6C7275] cursor-pointer font-medium">
+              Contact Us
+            </li>{" "}
+          </Link>
         </ul>
 
         {/* Icons */}
@@ -72,17 +86,22 @@ const Header = () => {
               <Link to="/" onClick={() => setMenuOpen(false)}>
                 <li className="cursor-pointer font-medium">Home</li>
               </Link>
-              <li className="text-[#6C7275] cursor-pointer font-medium" onClick={() => setMenuOpen(false)}>
+              <li
+                className="text-[#6C7275] cursor-pointer font-medium"
+                onClick={() => setMenuOpen(false)}
+              >
                 Shop
               </li>
-              <Link to='/product' onClick={() => setMenuOpen(false)}>
-              <li className="text-[#6C7275] cursor-pointer font-medium" >
-                Product
-              </li>
+              <Link to="/product" onClick={() => setMenuOpen(false)}>
+                <li className="text-[#6C7275] cursor-pointer font-medium">
+                  Product
+                </li>
               </Link>
-              <li className="text-[#6C7275] cursor-pointer font-medium" onClick={() => setMenuOpen(false)}>
-                Contact Us
-              </li>
+              <Link to="/contact" onClick={() => setMenuOpen(false)}>
+                <li className="text-[#6C7275] cursor-pointer font-medium">
+                  Contact Us
+                </li>
+              </Link>
             </ul>
           </div>
         )}
