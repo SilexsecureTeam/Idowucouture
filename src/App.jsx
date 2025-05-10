@@ -13,6 +13,7 @@ import NotfoundPage from './pages/NotfoundPage';
 import ProductPage from "./pages/ProductPage";
 import TermsPage from "./pages/TermsPage";
 import ContactPage from "./pages/ContactPage";
+import CheckoutPage from "./pages/CheckoutPage";
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
       <Route path="/product" element={<ProductPage />} />
       <Route path="/term" element={<TermsPage />} />
       <Route path="/contact" element={<ContactPage />} />
+      <Route path="/checkout" element={<CheckoutPage />} />
       <Route path="*" element={<NotfoundPage />} />
     </Routes> 
     </ ProductProvider>
