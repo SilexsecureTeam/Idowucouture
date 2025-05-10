@@ -1,59 +1,64 @@
-import React from 'react';
-import Slider from 'react-slick';
-import shirt from '../assets/blackshirt.png';
-import { Heart } from 'lucide-react';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import { useNavigate } from 'react-router-dom';
-import { useProduct } from '../context/ProductContext';
+import React from "react";
+import Slider from "react-slick";
+// import shirt from "../assets/blackshirt.png";
+import image1 from "../assets/pimage1.jpg";
+import image2 from "../assets/pimage2.jpg";
+import image3 from "../assets/pimage3.jpg";
+import image4 from "../assets/pimage4.jpg";
+import image5 from "../assets/pimage5.jpg";
+import { Heart } from "lucide-react";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { useNavigate } from "react-router-dom";
+import { useProduct } from "../context/ProductContext";
 
 const products = [
   {
     id: 1,
-    label: 'NEW',
-    discount: '-50%',
-    image: shirt,
-    name: 'Loveseat Sofa',
+    label: "NEW",
+    discount: "-50%",
+    image: image1,
+    name: "Loveseat Sofa",
     price: 199.0,
     oldPrice: 400.0,
     rating: 5,
   },
   {
     id: 2,
-    label: 'NEW',
-    discount: '-20%',
-    image: shirt,
-    name: 'Table Lamp',
+    label: "NEW",
+    discount: "-20%",
+    image: image2,
+    name: "Table Lamp",
     price: 24.99,
     oldPrice: 31.24,
     rating: 5,
   },
   {
     id: 3,
-    label: 'NEW',
-    discount: '-20%',
-    image: shirt,
-    name: 'Beige Table Lamp',
+    label: "NEW",
+    discount: "-20%",
+    image: image3,
+    name: "Beige Table Lamp",
     price: 24.99,
     oldPrice: 31.24,
     rating: 5,
   },
   {
     id: 4,
-    label: 'NEW',
-    discount: '-20%',
-    image: shirt,
-    name: 'Bamboo basket',
+    label: "NEW",
+    discount: "-20%",
+    image: image4,
+    name: "Bamboo basket",
     price: 24.99,
     oldPrice: 31.24,
     rating: 5,
   },
   {
     id: 5,
-    label: 'NEW',
-    discount: '-10%',
-    image: shirt,
-    name: 'Toasted',
+    label: "NEW",
+    discount: "-10%",
+    image: image5,
+    name: "Toasted",
     price: 224.99,
     oldPrice: 249.99,
     rating: 5,
@@ -66,8 +71,18 @@ const PrevArrow = ({ onClick }) => (
     className="absolute left-0 top-1/2 -translate-y-1/2 ml-0 md:-ml-8 cursor-pointer bg-black text-white rounded-full p-2 hover:bg-slate-800 transition-all duration-300 ease-in-out transform hover:scale-110 z-10 opacity-80 hover:opacity-100"
     aria-label="Previous slide"
   >
-    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
+    <svg
+      className="w-5 h-5"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M15 19l-7-7 7-7"
+      />
     </svg>
   </button>
 );
@@ -78,8 +93,18 @@ const NextArrow = ({ onClick }) => (
     className="absolute right-0 top-1/2 -translate-y-1/2 mr-0 md:-mr-8 cursor-pointer bg-black text-white rounded-full p-2 hover:bg-slate-800 transition-all duration-300 ease-in-out transform hover:scale-110 z-10 opacity-80 hover:opacity-100"
     aria-label="Next slide"
   >
-    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+    <svg
+      className="w-5 h-5"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M9 5l7 7-7 7"
+      />
     </svg>
   </button>
 );
@@ -99,11 +124,11 @@ const ProductSlider = () => {
 
   const handleViewDetails = (product) => {
     setSelectedProduct(product); // Store the entire product
-    navigate('/product');
+    navigate("/product");
   };
 
   const getSlidesVisible = () => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       if (window.innerWidth < 768) return 2;
       if (window.innerWidth < 1024) return 3;
       return 4;
@@ -158,8 +183,13 @@ const ProductSlider = () => {
   return (
     <section className="py-8 px-4 max-w-7xl mx-auto w-full">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="md:text-[28px] text-[20px] poppins font-medium">You might also like</h2>
-        <a href="#" className="text-base font-medium text-[#141718] hover:underline">
+        <h2 className="md:text-[28px] text-[20px] poppins font-medium">
+          You might also like
+        </h2>
+        <a
+          href="#"
+          className="text-base font-medium text-[#141718] hover:underline"
+        >
           More Products →
         </a>
       </div>
@@ -214,7 +244,10 @@ const ProductSlider = () => {
                       </span>
                       {(selectedProduct?.oldPrice || product.oldPrice) && (
                         <span className="text-sm text-gray-400 line-through">
-                          ₦{(selectedProduct?.oldPrice || product.oldPrice).toFixed(2)}
+                          ₦
+                          {(
+                            selectedProduct?.oldPrice || product.oldPrice
+                          ).toFixed(2)}
                         </span>
                       )}
                     </div>

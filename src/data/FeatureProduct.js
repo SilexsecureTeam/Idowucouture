@@ -1,10 +1,10 @@
-import hand2 from "../assets/hand2.png";
-import blackshirt from "../assets/blackshirt.png";
-import hand from "../assets/hand.png";
-import bag from "../assets/bag.png";
-import shoe2 from "../assets/shoe2.png";
-import img from "../assets/img.png";
-import table from "../assets/table.png";
+import hand2 from "../assets/fimage1.jpg";
+import blackshirt from "../assets/fimage2.jpg";
+import hand from "../assets/fimage3.jpg";
+import bag from "../assets/fimage4.jpg";
+import shoe2 from "../assets/fimage5.jpg";
+import img from "../assets/fimage6.jpg";
+import table from "../assets/fimage7.jpg";
 
 
 const products = [

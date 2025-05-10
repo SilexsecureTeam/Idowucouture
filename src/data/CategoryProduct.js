@@ -1,9 +1,9 @@
-import img from "../assets/img.png";
-import ball from "../assets/ball.png";
-import golfbag from "../assets/golfbag.png";
-import blackshirt from "../assets/blackshirt.png";
+import img from "../assets/simage1.jpg";
+import ball from "../assets/simage2.jpg";
+import golfbag from "../assets/simage3.jpg";
+import blackshirt from "../assets/simage4.jpg";
 import shoe2 from "../assets/shoe2.png";
-import hand from "../assets/hand.png";
+import hand from "../assets/simage6.jpg";
 
 const categories = [
     {
