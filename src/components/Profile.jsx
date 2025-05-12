@@ -32,7 +32,7 @@ const Profile = () => {
             {navItems.map((item) => (
               <li key={item.label}>
                 <button
-                  className="flex items-center poppins font-normal text-[16px] w-full text-[#00659D] px-2 py-2 rounded transition"
+                  className="flex items-center cursor-pointer hover:bg-green-500 poppins font-normal text-[16px] w-full text-[#00659D] px-2 py-2 rounded transition"
                   aria-label={item.label}
                 >
                   {item.icon}

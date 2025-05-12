@@ -35,7 +35,11 @@ const Header = () => {
           <Link to="/">
             <li className="cursor-pointer font-medium">Home</li>
           </Link>
-          <li className="text-[#6C7275] cursor-pointer font-medium">Shop</li>
+          <Link to="/about">
+            <li className="text-[#6C7275] cursor-pointer font-medium">
+              About Us
+            </li>
+          </Link>
           <Link to="/product">
             <li className="text-[#6C7275] cursor-pointer font-medium">
               Product

@@ -18,9 +18,9 @@ const Privacy = () => {
       </div>
 
       <div className="px-5 md:px-10 text-black lg:px-20 py-20">
-        <h2 className="font-bold mon text-[24px] md:text-[40px] mb-4">
+        {/* <h2 className="font-bold mon text-[24px] md:text-[40px] mb-4">
           Privacy Policy
-        </h2>
+        </h2> */}
         <h3 className="font-bold mon text-[20px] md:text-[30px] mb-4">
           Introduction
         </h3>

@@ -63,7 +63,7 @@ const SignUp = () => {
   return (
     <div className="bg-gray-50 flex flex-col md:flex-row">
       {/* Left side - Image */}
-      <div className="relative hidden md:block w-full md:w-1/2 h-screen md:h-auto overflow-hidden">
+      <div className="relative hidden md:block w-full md:w-1/2 h-screen  overflow-hidden">
         <img
           src={auth}
           alt="Auth visual"
@@ -176,11 +176,11 @@ const SignUp = () => {
                 className="absolute right-3 top-3 cursor-pointer text-sm text-gray-600"
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
               >
-                {showConfirmPassword ? (
+                {/* {showConfirmPassword ? (
                   <EyeOffIcon size={20} />
                 ) : (
                   <EyeIcon size={20} />
-                )}
+                )} */}
               </span>
             </div>
 

@@ -13,6 +13,7 @@ import stripe from "../assets/stripe.png";
 import paypal from "../assets/paypal.png";
 import pay from "../assets/pay.png";
 import { Link } from "react-router-dom";
+import logo from "../assets/logo.png";
 
 const Footer = () => {
   // State to manage visibility of each section's list
@@ -35,7 +36,7 @@ const Footer = () => {
       <div className="w-full mx-auto flex flex-col md:flex-row md:justify-between gap-10 md:gap-0">
         {/* Left section */}
         <div className="md:w-1/3 mb-2 md:mb-0 border-b-1 border-b-gray-700 md:border-b-0 pb-4 md:pb-0 w-full">
-          <h2 className="text-[24px] poppins font-medium mb-4">Idowucouture</h2>
+          <img src={logo} alt="logo" className="h-20" />
           <p className="mb-6 text-[20px] poppins font-medium text-[#fefefe]">
             More than just a game.
             <br />
@@ -92,29 +93,29 @@ const Footer = () => {
               } md:block space-y-3 text-[14px] text-[#fefefe]`}
             >
               <li>
-                <a href="#" className="hover:text-white transition">
+                <Link to="/" className="hover:text-white transition">
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition">
-                  Shop
-                </a>
+                <Link to="/about" className="hover:text-white transition">
+                  About Us
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition">
+                <Link to="/product" className="hover:text-white transition">
                   Product
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition">
+                <a href="#article" className="hover:text-white transition">
                   Articles
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition">
+                <Link to="/contact" className="hover:text-white transition">
                   Contact Us
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -197,10 +198,11 @@ const Footer = () => {
                 isOpen.office ? "block" : "hidden"
               } md:block space-y-1.5 text-[14px] text-[#fefefe]`}
             >
-              <li>43111 Hai Trieu street,</li>
-              <li>District 1, HCMC</li>
-              <li>Vietnam</li>
-              <li className="mt-3">84-756-3237</li>
+              <li>
+                Idowu Couture, Shop 2 Hee 120, adjacent TASTIA Restaurant 38
+              </li>
+              <li>Abuja</li>
+              <li className="mt-3">+234 80234545061</li>
             </ul>
           </div>
         </div>

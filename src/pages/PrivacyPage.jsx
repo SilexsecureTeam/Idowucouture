@@ -1,6 +1,6 @@
 import React from "react";
 import Privacy from "../components/Privacy";
-import CartFooter from "../components/CartFooter";
+import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Notification from "../components/Notification";
 
@@ -11,7 +11,7 @@ const PrivacyPage = () => {
       <Header />
       <div className="absolute top-26 left-0 w-full">
         <Privacy />
-        <CartFooter />
+        <Footer />
       </div>
     </div>
   );

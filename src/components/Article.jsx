@@ -26,7 +26,7 @@ const articles = [
 
 const Article = () => {
   return (
-    <div className="bg-white px-5 sm:px-10 lg:px-20 py-8">
+    <div className="bg-white px-5 sm:px-10 lg:px-20 py-8" id="article">
       <div className="flex justify-between items-center mb-6">
         <h1 className="poppins text-[20px] md:text-[40px] font-medium">
           Latest Articles
