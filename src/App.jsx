@@ -17,6 +17,7 @@ import CheckoutPage from "./pages/CheckoutPage";
 import PrivacyPage from "./pages/PrivacyPage";
 import ProfilePage from "./pages/ProfilePage";
 import AboutPage from "./pages/AboutPage";
+import TrackPage from "./pages/TrackPage";
 
 const App = () => {
   return (
@@ -34,6 +35,7 @@ const App = () => {
           <Route path="/privacy" element={<PrivacyPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/tracking" element={<TrackPage />} />
           <Route path="*" element={<NotfoundPage />} />
         </Routes>
       </ProductProvider>
