@@ -90,12 +90,11 @@ const Header = () => {
               <Link to="/" onClick={() => setMenuOpen(false)}>
                 <li className="cursor-pointer font-medium">Home</li>
               </Link>
-              <li
-                className="text-[#6C7275] cursor-pointer font-medium"
-                onClick={() => setMenuOpen(false)}
-              >
-                Shop
-              </li>
+              <Link to="/about" onClick={() => setMenuOpen(false)}>
+                <li className="text-[#6C7275] cursor-pointer font-medium">
+                  About us
+                </li>
+              </Link>
               <Link to="/product" onClick={() => setMenuOpen(false)}>
                 <li className="text-[#6C7275] cursor-pointer font-medium">
                   Product

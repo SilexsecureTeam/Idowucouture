@@ -18,6 +18,7 @@ import PrivacyPage from "./pages/PrivacyPage";
 import ProfilePage from "./pages/ProfilePage";
 import AboutPage from "./pages/AboutPage";
 import TrackPage from "./pages/TrackPage";
+import TrackingOrderPage from "./pages/TrackingOrderPage";
 
 const App = () => {
   return (
@@ -36,6 +37,7 @@ const App = () => {
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/tracking" element={<TrackPage />} />
+          <Route path="/trackingorder" element={<TrackingOrderPage />} />
           <Route path="*" element={<NotfoundPage />} />
         </Routes>
       </ProductProvider>
