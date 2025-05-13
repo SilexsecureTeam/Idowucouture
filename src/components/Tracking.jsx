@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ArrowRight, Info, Home, ChevronRightIcon } from "lucide-react";
 import Secondletter from "./Secondletter";
+import { Link } from "react-router-dom";
 
 export default function Tracking() {
   const [orderId, setOrderId] = useState("");
@@ -55,13 +56,14 @@ export default function Tracking() {
             <Info className="w-4 h-4 text-green-500 mt-1" />
             <span>Order ID that we sent to you in your email address.</span>
           </div>
-
-          <button
-            type="submit"
-            className="bg-green-600 hover:bg-green-700 text-white font-medium text-sm px-6 py-2 rounded flex items-center gap-2"
-          >
-            TRACK ORDER <ArrowRight className="w-4 h-4" />
-          </button>
+          <Link to="/trackingorder">
+            <button
+              type="submit"
+              className="bg-green-600 hover:bg-green-700 text-white font-medium text-sm px-6 py-2 rounded flex items-center gap-2"
+            >
+              TRACK ORDER <ArrowRight className="w-4 h-4" />
+            </button>
+          </Link>
         </form>
       </div>
       <div className="mt-25 px-5 sm:px-10 lg:px-20">
