@@ -1,12 +1,12 @@
-import React from 'react';
-import Slider from 'react-slick';
-import products from '../data/FeatureProduct';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import { useCart } from '../context/CartHooks';
-import { useNavigate } from 'react-router-dom';
-import { useProduct } from '../context/ProductContext';
-import { ShoppingCart, Eye } from 'lucide-react';
+import React from "react";
+import Slider from "react-slick";
+import products from "../data/FeatureProduct";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { useCart } from "../context/CartHooks";
+import { useNavigate } from "react-router-dom";
+import { useProduct } from "../context/ProductContext";
+import { ShoppingCart, Eye } from "lucide-react";
 
 const FeaturedSlider = () => {
   const { addToCart, cart } = useCart();
@@ -16,7 +16,7 @@ const FeaturedSlider = () => {
 
   const handleViewDetails = (product) => {
     setSelectedProduct(product);
-    navigate('/product');
+    navigate("/product");
   };
 
   const handleAddToCart = (product) => {
@@ -26,7 +26,7 @@ const FeaturedSlider = () => {
       name: product.name,
       price: product.price,
       image: product.image,
-      color: 'default', // Default color since FeaturedSlider doesn't select color
+      color: "default", // Default color since FeaturedSlider doesn't select color
       qty: 1, // Explicitly set qty to 1
     };
     addToCart(productToAdd);
@@ -49,10 +49,10 @@ const FeaturedSlider = () => {
     arrows: false,
     autoplay: true,
     autoplaySpeed: 1500,
-    dotsClass: 'slick-dots custom-dots-class',
+    dotsClass: "slick-dots custom-dots-class",
     appendDots: (dots) => (
       <div className="flex absolute -top-6 right-8 items-center">
-        <ul style={{ margin: '0px' }}> {dots} </ul>
+        <ul style={{ margin: "0px" }}> {dots} </ul>
       </div>
     ),
     customPaging: function () {
@@ -80,7 +80,9 @@ const FeaturedSlider = () => {
   return (
     <section className="w-full mx-auto py-8 relative">
       <div className="flex px-5 sm:px-10 lg:px-20 justify-between items-center mb-6">
-        <h2 className="text-2xl md:text-[40px] poppins text-black font-semibold">Featured</h2>
+        <h2 className="text-2xl md:text-[40px] poppins text-black font-semibold">
+          Featured
+        </h2>
         <div className="dots-container"></div>
       </div>
 
@@ -147,9 +149,11 @@ const FeaturedSlider = () => {
 
       <Slider {...settings}>
         {products.map((product) => {
-          const cartItem = cart.find((item) => item.id === product.id && item.color === 'default');
+          const cartItem = cart.find(
+            (item) => item.id === product.id && item.color === "default"
+          );
           const qty = cartItem ? cartItem.qty : 0;
-          const buttonText = qty > 0 ? `Add to cart (${qty})` : 'Add to cart';
+          const buttonText = qty > 0 ? `Add to cart (${qty})` : "Add to cart";
 
           return (
             <div key={product.id} className="pl-5 sm:pl-10">
@@ -180,11 +184,11 @@ const FeaturedSlider = () => {
                   <img
                     src={product.image}
                     alt={product.name}
-                    className="w-full h-56 object-cover bg-white rounded-t-md"
+                    className="w-full h-56 object-cover bg-black rounded-t-md"
                   />
                   <div
                     className={`overlay ${
-                      showButtons[product.id] ? 'active' : ''
+                      showButtons[product.id] ? "active" : ""
                     }`}
                   >
                     {window.innerWidth >= 768 ? (
@@ -228,7 +232,9 @@ const FeaturedSlider = () => {
                       <svg
                         key={i}
                         className={`w-4 h-4 fill-current ${
-                          i < product.rating ? 'text-yellow-400' : 'text-gray-300'
+                          i < product.rating
+                            ? "text-yellow-400"
+                            : "text-gray-300"
                         }`}
                         viewBox="0 0 20 20"
                         fill="currentColor"
@@ -242,7 +248,9 @@ const FeaturedSlider = () => {
                 <h3 className="text-sm font-semibold px-3">{product.name}</h3>
                 <div className="px-3 pb-3 mt-1 flex flex-col gap-2">
                   <div className="flex items-center gap-2">
-                    <span className="font-semibold">${product.price.toFixed(2)}</span>
+                    <span className="font-semibold">
+                      ${product.price.toFixed(2)}
+                    </span>
                     {product.originalPrice && (
                       <span className="line-through text-gray-400 text-xs">
                         ${product.originalPrice.toFixed(2)}
