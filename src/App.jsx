@@ -7,7 +7,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 // Lazy load all page components
-const HomePage = lazy(() => import("./pages/HomePage")); // Corrected import path
+const HomePage = lazy(() => import("./pages/HomePage"));
 const LoginPage = lazy(() => import("./pages/LoginPage"));
 const SignupPage = lazy(() => import("./pages/SignupPage"));
 const CartPage = lazy(() => import("./pages/CartPage"));
@@ -23,7 +23,6 @@ const TrackingOrderPage = lazy(() => import("./pages/TrackingOrderPage"));
 const NotfoundPage = lazy(() => import("./pages/NotfoundPage"));
 
 const App = () => {
-  // Circular loading spinner JSX
   const loadingSpinner = (
     <div style={spinnerContainerStyle}>
       <div style={spinnerStyle}></div>

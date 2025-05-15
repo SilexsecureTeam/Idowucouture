@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo, useCallback } from "react";
 import Slider from "react-slick";
 import products from "../data/FeatureProduct";
 import "slick-carousel/slick/slick.css";
@@ -14,37 +14,42 @@ const FeaturedSlider = () => {
   const { setSelectedProduct } = useProduct();
   const [showButtons, setShowButtons] = React.useState({});
 
-  const handleViewDetails = (product) => {
-    setSelectedProduct(product);
-    navigate("/product");
-  };
+  const handleViewDetails = useCallback(
+    (product) => {
+      setSelectedProduct(product);
+      navigate("/product");
+    },
+    [navigate, setSelectedProduct]
+  );
 
-  const handleAddToCart = (product) => {
-    // Create a product object with all required fields
-    const productToAdd = {
-      id: product.id,
-      name: product.name,
-      price: product.price,
-      image: product.image,
-      color: "default", // Default color since FeaturedSlider doesn't select color
-      qty: 1, // Explicitly set qty to 1
-    };
-    addToCart(productToAdd);
-  };
+  const handleAddToCart = useCallback(
+    (product) => {
+      const productToAdd = {
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        image: product.image,
+        color: "default",
+        qty: 1,
+      };
+      addToCart(productToAdd);
+    },
+    [addToCart]
+  );
 
-  const toggleButtons = (productId, show) => {
+  const toggleButtons = useCallback((productId, show) => {
     setShowButtons((prev) => ({
       ...prev,
       [productId]: show,
     }));
-  };
+  }, []);
 
   const slidesToShow = 4;
   const settings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: slidesToShow,
+    slidesToShow,
     slidesToScroll: 1,
     arrows: false,
     autoplay: true,
@@ -55,25 +60,13 @@ const FeaturedSlider = () => {
         <ul style={{ margin: "0px" }}> {dots} </ul>
       </div>
     ),
-    customPaging: function () {
-      return (
-        <div className="w-2 h-2 bg-gray-400 rounded-full transition-colors duration-200 hover:bg-black"></div>
-      );
-    },
+    customPaging: () => (
+      <div className="w-2 h-2 bg-gray-400 rounded-full transition-colors duration-200 hover:bg-black" />
+    ),
     draggable: true,
     responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-        },
-      },
-      {
-        breakpoint: 640,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
+      { breakpoint: 1024, settings: { slidesToShow: 3 } },
+      { breakpoint: 640, settings: { slidesToShow: 2 } },
     ],
   };
 
@@ -83,69 +76,8 @@ const FeaturedSlider = () => {
         <h2 className="text-2xl md:text-[40px] poppins text-black font-semibold">
           Featured
         </h2>
-        <div className="dots-container"></div>
+        <div className="dots-container" />
       </div>
-
-      <style jsx global>{`
-        .slick-list {
-          cursor: grab;
-        }
-        .slick-list:active {
-          cursor: grabbing;
-          color: black;
-          background-color: white;
-        }
-        @media (max-width: 768px) {
-          .slick-list {
-            cursor: pointer;
-          }
-        }
-        .custom-dots-class {
-          position: absolute;
-          top: -45px;
-          right: 30px !important;
-          bottom: auto;
-          display: flex !important;
-          justify-content: flex-end;
-        }
-        .custom-dots-class li {
-          margin: 0 3px;
-        }
-        .custom-dots-class li div {
-          background-color: gray;
-        }
-        .custom-dots-class li.slick-active div {
-          background-color: black !important;
-        }
-        .image-container {
-          position: relative;
-        }
-        .overlay {
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: rgba(0, 0, 0, 0.5);
-          opacity: 0;
-          transition: opacity 0.3s ease;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 10px;
-          z-index: 10;
-        }
-        @media (min-width: 768px) {
-          .image-container:hover .overlay {
-            opacity: 1;
-          }
-        }
-        @media (max-width: 767px) {
-          .overlay.active {
-            opacity: 1;
-          }
-        }
-      `}</style>
 
       <Slider {...settings}>
         {products.map((product) => {
@@ -185,6 +117,9 @@ const FeaturedSlider = () => {
                     src={product.image}
                     alt={product.name}
                     className="w-full h-56 object-cover bg-black rounded-t-md"
+                    loading="lazy"
+                    width="300"
+                    height="224"
                   />
                   <div
                     className={`overlay ${
@@ -267,4 +202,4 @@ const FeaturedSlider = () => {
   );
 };
 
-export default FeaturedSlider;
+export default memo(FeaturedSlider);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import categories from "../data/CategoryProduct";
 
 const Category = () => {
@@ -9,11 +9,14 @@ const Category = () => {
       </h1>
       <div className="grid grid-cols-2 md:grid-cols-3 w-full gap-5 sm:gap-10 lg:gap-12">
         {categories.map((category) => (
-          <div key={category.id} className=" gap-2 items-center ">
+          <div key={category.id} className="gap-2 items-center">
             <img
               src={category.image}
               alt={category.name}
-              className=" h-[150px] md:h-[250px] w-full object-cover mb-2"
+              className="h-[150px] md:h-[250px] w-full object-cover mb-2"
+              loading="lazy"
+              width="300"
+              height="250"
             />
             <h2 className="text-base md:text-lg text-center poppins font-medium">
               {category.name}
@@ -25,4 +28,4 @@ const Category = () => {
   );
 };
 
-export default Category;
+export default memo(Category);

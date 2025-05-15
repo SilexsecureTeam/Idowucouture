@@ -1,6 +1,5 @@
-import React from "react";
+import React, { memo, useCallback } from "react";
 import Slider from "react-slick";
-// import shirt from "../assets/blackshirt.png";
 import image1 from "../assets/pimage1.jpg";
 import image2 from "../assets/pimage2.jpg";
 import image3 from "../assets/pimage3.jpg";
@@ -97,7 +96,7 @@ const NextArrow = ({ onClick }) => (
       className="w-5 h-5"
       fill="none"
       stroke="currentColor"
-      viewBox="0 0 24 24"
+      viewBox="0 24 24"
     >
       <path
         strokeLinecap="round"
@@ -110,31 +109,34 @@ const NextArrow = ({ onClick }) => (
 );
 
 const ProductSlider = () => {
-  const { selectedProduct, setSelectedProduct } = useProduct();
+  const { setSelectedProduct } = useProduct();
   const [favorites, setFavorites] = React.useState({});
   const [currentSlide, setCurrentSlide] = React.useState(0);
   const navigate = useNavigate();
 
-  const toggleFavorite = (productId) => {
+  const toggleFavorite = useCallback((productId) => {
     setFavorites((prev) => ({
       ...prev,
       [productId]: !prev[productId],
     }));
-  };
+  }, []);
 
-  const handleViewDetails = (product) => {
-    setSelectedProduct(product); // Store the entire product
-    navigate("/product");
-  };
+  const handleViewDetails = useCallback(
+    (product) => {
+      setSelectedProduct(product);
+      navigate("/product");
+    },
+    [navigate, setSelectedProduct]
+  );
 
-  const getSlidesVisible = () => {
+  const getSlidesVisible = useCallback(() => {
     if (typeof window !== "undefined") {
       if (window.innerWidth < 768) return 2;
       if (window.innerWidth < 1024) return 3;
       return 4;
     }
     return 4;
-  };
+  }, []);
 
   const settings = {
     dots: false,
@@ -145,25 +147,13 @@ const ProductSlider = () => {
     slidesToScroll: 1,
     rtl: false,
     autoplay: false,
-    autoplaySpeed: 3000,
     draggable: true,
     afterChange: (index) => setCurrentSlide(index),
     prevArrow: <PrevArrow />,
     nextArrow: <NextArrow />,
-
     responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
+      { breakpoint: 1024, settings: { slidesToShow: 3 } },
+      { breakpoint: 768, settings: { slidesToShow: 2 } },
     ],
   };
 
@@ -171,7 +161,6 @@ const ProductSlider = () => {
   const slidesVisible = getSlidesVisible();
   const progress = ((currentSlide + slidesVisible) / totalSlides) * 100;
 
-  // Render nothing if products array is empty
   if (products.length === 0) {
     return (
       <div className="px-4 py-8 text-center text-gray-500">
@@ -216,9 +205,12 @@ const ProductSlider = () => {
                 </button>
               </div>
               <img
-                src={selectedProduct?.image || product.image}
-                alt={selectedProduct?.name || product.name}
+                src={product.image}
+                alt={product.name}
                 className="w-full h-60 object-fill mb-3"
+                loading="lazy"
+                width="300"
+                height="240"
               />
               <div className="px-2 w-full">
                 <div className="flex w-full justify-start">
@@ -235,25 +227,22 @@ const ProductSlider = () => {
                 </div>
                 <div className="text-start w-full mt-2">
                   <div className="font-semibold w-full text-base">
-                    {selectedProduct?.name || product.name}
+                    {product.name}
                   </div>
                   <div className="flex flex-col gap-2">
                     <div className="flex items-center gap-2">
                       <span className="text-sm font-bold">
-                        ₦{(selectedProduct?.price || product.price).toFixed(2)}
+                        ₦{product.price.toFixed(2)}
                       </span>
-                      {(selectedProduct?.oldPrice || product.oldPrice) && (
+                      {product.oldPrice && (
                         <span className="text-sm text-gray-400 line-through">
-                          ₦
-                          {(
-                            selectedProduct?.oldPrice || product.oldPrice
-                          ).toFixed(2)}
+                          ₦{product.oldPrice.toFixed(2)}
                         </span>
                       )}
                     </div>
                     <button
                       className="bg-gray-900 text-white text-sm py-2 px-6 rounded w-full hover:bg-green-500 transition-all duration-300"
-                      onClick={() => handleViewDetails(product)} // Pass entire product
+                      onClick={() => handleViewDetails(product)}
                     >
                       View Details
                     </button>
@@ -268,10 +257,10 @@ const ProductSlider = () => {
         <div
           className="h-full bg-black transition-all duration-500"
           style={{ width: `${Math.min(progress, 100)}%` }}
-        ></div>
+        />
       </div>
     </section>
   );
 };
 
-export default ProductSlider;
+export default memo(ProductSlider);
