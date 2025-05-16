@@ -80,7 +80,11 @@ const Hurray = () => {
         </div>
       </div>
       <div className="w-full sm:w-1/2">
-        <img src={hurray} alt="img" className="h-full w-full object-cover" />
+        <img
+          src={hurray}
+          alt="img"
+          className="h-full w-full bg-gray-300 object-cover"
+        />
       </div>
     </div>
   );

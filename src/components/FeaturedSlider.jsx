@@ -197,7 +197,7 @@ const FeaturedSlider = () => {
                     <img
                       src={product.image}
                       alt={product.name}
-                      className="w-full h-56 object-cover bg-black rounded-t-md"
+                      className="w-full h-56 object-cover bg-gray-300 rounded-t-md"
                     />
                   )}
                   <div

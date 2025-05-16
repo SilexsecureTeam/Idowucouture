@@ -30,7 +30,7 @@ const Category = () => {
               <img
                 src={category.image}
                 alt={category.name}
-                className="h-[150px] md:h-[250px] w-full object-cover mb-2"
+                className="h-[150px] md:h-[250px] w-full bg-gray-300 object-cover mb-2"
                 loading="lazy"
                 width="300"
                 height="250"

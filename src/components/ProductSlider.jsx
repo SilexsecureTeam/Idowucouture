@@ -229,7 +229,7 @@ const ProductSlider = () => {
                 <img
                   src={selectedProduct?.image || product.image}
                   alt={selectedProduct?.name || product.name}
-                  className="w-full h-60 object-fill mb-3"
+                  className="w-full h-60 object-fill bg-gray-300 mb-3"
                 />
               )}
               <div className="px-2 w-full">

@@ -41,7 +41,7 @@ const About = () => {
           <img
             src={img2}
             alt="img"
-            className="w-1/3 mt-[4%] h-[80%] hidden md:block object-cover"
+            className="w-1/3 bg-gray-300 mt-[4%] h-[80%] hidden md:block object-cover"
           />
         )}
       </div>
@@ -55,7 +55,7 @@ const About = () => {
           <img
             src={img3}
             alt="img3"
-            className="md:h-60 md:w-60 md:block hidden rounded-lg"
+            className="md:h-60 bg-gray-300 md:w-60 md:block hidden rounded-lg"
           />
         )}
         <div className="mt-8 mb-10 flex-1">
@@ -91,7 +91,7 @@ const About = () => {
           <img
             src={img4}
             alt="img"
-            className="md:w-1/2 w-full h-60 object-cover md:h-90"
+            className="md:w-1/2 bg-gray-300 w-full h-60 object-cover md:h-90"
           />
         )}
         <div className="w-full md:w-1/2">
@@ -120,7 +120,7 @@ const About = () => {
             <img
               src={img5}
               alt="img"
-              className="absolute top-0 left-0 w-full h-[90vh] object-cover"
+              className="absolute bg-gray-300 top-0 left-0 w-full h-[90vh] object-cover"
             />
           )}
         </div>

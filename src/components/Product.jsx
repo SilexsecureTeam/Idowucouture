@@ -209,7 +209,7 @@ const Product = () => {
                         <img
                           src={image.src}
                           alt={image.alt}
-                          className="w-full h-82 object-fill object-center flex-shrink-0"
+                          className="w-full h-82 object-fill bg-gray-300 object-center flex-shrink-0"
                         />
                       )}
                     </div>

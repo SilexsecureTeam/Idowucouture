@@ -51,7 +51,7 @@ const Article = () => {
               <img
                 src={article.image}
                 alt={article.title}
-                className="w-full h-60 md:h-64 object-cover mb-2"
+                className="w-full h-60 bg-gray-300 md:h-64 object-cover mb-2"
                 loading="lazy"
                 width="400"
                 height="256"

@@ -37,7 +37,7 @@ const Collection = () => {
             <img
               src={collections[0].image}
               alt={collections[0].title}
-              className="w-full h-full object-cover"
+              className="w-full h-full bg-gray-300 object-cover"
               loading="lazy"
               width="600"
               height="800"
@@ -68,7 +68,7 @@ const Collection = () => {
               <img
                 src={collections[1].image}
                 alt={collections[1].title}
-                className="w-full h-full object-cover"
+                className="w-full h-full bg-gray-300 object-cover"
                 loading="lazy"
                 width="600"
                 height="400"
@@ -98,7 +98,7 @@ const Collection = () => {
               <img
                 src={collections[2].image}
                 alt={collections[2].title}
-                className="w-full h-full object-cover"
+                className="w-full h-full bg-gray-300 object-cover"
                 loading="lazy"
                 width="600"
                 height="400"
