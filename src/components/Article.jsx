@@ -1,4 +1,5 @@
-import React, { memo } from "react";
+import React, { memo, useState, useEffect } from "react";
+import { Skeleton } from "@mui/material";
 import shoe3 from "../assets/art2.jpg";
 import shoe4 from "../assets/art1.jpg";
 import cup from "../assets/cup.png";
@@ -15,6 +16,14 @@ const articles = [
 ];
 
 const Article = () => {
+  const [loading, setLoading] = useState(true);
+
+  // Simulate image loading
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="bg-white px-5 sm:px-10 lg:px-20 py-8" id="article">
       <div className="flex justify-between items-center mb-6">
@@ -31,14 +40,23 @@ const Article = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {articles.map((article) => (
           <div key={article.id} className="relative flex flex-col h-full">
-            <img
-              src={article.image}
-              alt={article.title}
-              className="w-full h-60 md:h-64 object-cover mb-2"
-              loading="lazy"
-              width="400"
-              height="256"
-            />
+            {loading ? (
+              <Skeleton
+                variant="rectangular"
+                className="w-full h-60 md:h-64 object-cover mb-2"
+                width="400"
+                height="256"
+              />
+            ) : (
+              <img
+                src={article.image}
+                alt={article.title}
+                className="w-full h-60 md:h-64 object-cover mb-2"
+                loading="lazy"
+                width="400"
+                height="256"
+              />
+            )}
             <div className="bottom-4 left-4">
               <h3 className="text-[20px] poppins text-[#23262F] font-medium mb-1 md:mb-2">
                 {article.title}

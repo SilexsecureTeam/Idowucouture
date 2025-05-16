@@ -5,6 +5,7 @@ import { ProductProvider } from "./context/ProductContext";
 import "./App.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import logo from "./assets/logo.png";
 
 // Lazy load all page components
 const HomePage = lazy(() => import("./pages/HomePage"));
@@ -25,7 +26,11 @@ const NotfoundPage = lazy(() => import("./pages/NotfoundPage"));
 const App = () => {
   const loadingSpinner = (
     <div style={spinnerContainerStyle}>
-      <div style={spinnerStyle}></div>
+      <img
+        src={logo} // Replace with your image path
+        alt="Loading..."
+        style={loadingImageStyle}
+      />
     </div>
   );
 
@@ -55,7 +60,7 @@ const App = () => {
   );
 };
 
-// Inline styles for the circular loading spinner
+// Inline styles for the loading container (unchanged)
 const spinnerContainerStyle = {
   display: "flex",
   justifyContent: "center",
@@ -63,20 +68,25 @@ const spinnerContainerStyle = {
   height: "100vh",
 };
 
-const spinnerStyle = {
-  width: "40px",
-  height: "40px",
-  border: "4px solid #f3f3f3",
-  borderTop: "4px solid #3498db",
-  borderRadius: "50%",
-  animation: "spin 1s linear infinite",
+// Inline styles for the loading image with animation
+const loadingImageStyle = {
+  width: "80px", // Initial size (adjust as needed)
+  height: "80px",
+  animation: "pulse 1.5s ease-in-out infinite", // Animation for size increase/decrease
 };
 
-// Add keyframes for the spinner animation (you can move this to your CSS file)
+// Add keyframes for the pulse animation
 const keyframes = `
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2); /* Increase size by 20% */
+    }
+    100% {
+      transform: scale(1);
+    }
   }
 `;
 

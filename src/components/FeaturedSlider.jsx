@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
+import { Skeleton } from "@mui/material";
 import products from "../data/FeatureProduct";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -12,7 +13,14 @@ const FeaturedSlider = () => {
   const { addToCart, cart } = useCart();
   const navigate = useNavigate();
   const { setSelectedProduct } = useProduct();
-  const [showButtons, setShowButtons] = React.useState({});
+  const [showButtons, setShowButtons] = useState({});
+  const [loading, setLoading] = useState(true); // Added loading state
+
+  // Simulate image loading
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleViewDetails = (product) => {
     setSelectedProduct(product);
@@ -20,14 +28,13 @@ const FeaturedSlider = () => {
   };
 
   const handleAddToCart = (product) => {
-    // Create a product object with all required fields
     const productToAdd = {
       id: product.id,
       name: product.name,
       price: product.price,
       image: product.image,
-      color: "default", // Default color since FeaturedSlider doesn't select color
-      qty: 1, // Explicitly set qty to 1
+      color: "default",
+      qty: 1,
     };
     addToCart(productToAdd);
   };
@@ -181,11 +188,18 @@ const FeaturedSlider = () => {
                     window.innerWidth >= 768 && toggleButtons(product.id, false)
                   }
                 >
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-56 object-cover bg-black  rounded-t-md"
-                  />
+                  {loading ? (
+                    <Skeleton
+                      variant="rectangular"
+                      className="w-full h-56 object-cover bg-black rounded-t-md"
+                    />
+                  ) : (
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-56 object-cover bg-black rounded-t-md"
+                    />
+                  )}
                   <div
                     className={`overlay ${
                       showButtons[product.id] ? "active" : ""

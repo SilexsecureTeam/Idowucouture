@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
-// import shirt from "../assets/blackshirt.png";
+import { Skeleton } from "@mui/material";
 import image1 from "../assets/pimage1.jpg";
 import image2 from "../assets/pimage2.jpg";
 import image3 from "../assets/pimage3.jpg";
@@ -111,9 +111,16 @@ const NextArrow = ({ onClick }) => (
 
 const ProductSlider = () => {
   const { selectedProduct, setSelectedProduct } = useProduct();
-  const [favorites, setFavorites] = React.useState({});
-  const [currentSlide, setCurrentSlide] = React.useState(0);
+  const [favorites, setFavorites] = useState({});
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [loading, setLoading] = useState(true); // Added loading state
   const navigate = useNavigate();
+
+  // Simulate image loading
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const toggleFavorite = (productId) => {
     setFavorites((prev) => ({
@@ -123,7 +130,7 @@ const ProductSlider = () => {
   };
 
   const handleViewDetails = (product) => {
-    setSelectedProduct(product); // Store the entire product
+    setSelectedProduct(product);
     navigate("/product");
   };
 
@@ -150,7 +157,6 @@ const ProductSlider = () => {
     afterChange: (index) => setCurrentSlide(index),
     prevArrow: <PrevArrow />,
     nextArrow: <NextArrow />,
-
     responsive: [
       {
         breakpoint: 1024,
@@ -171,7 +177,6 @@ const ProductSlider = () => {
   const slidesVisible = getSlidesVisible();
   const progress = ((currentSlide + slidesVisible) / totalSlides) * 100;
 
-  // Render nothing if products array is empty
   if (products.length === 0) {
     return (
       <div className="px-4 py-8 text-center text-gray-500">
@@ -215,11 +220,18 @@ const ProductSlider = () => {
                   )}
                 </button>
               </div>
-              <img
-                src={selectedProduct?.image || product.image}
-                alt={selectedProduct?.name || product.name}
-                className="w-full h-60 object-fill mb-3"
-              />
+              {loading ? (
+                <Skeleton
+                  variant="rectangular"
+                  className="w-full h-60 object-fill mb-3"
+                />
+              ) : (
+                <img
+                  src={selectedProduct?.image || product.image}
+                  alt={selectedProduct?.name || product.name}
+                  className="w-full h-60 object-fill mb-3"
+                />
+              )}
               <div className="px-2 w-full">
                 <div className="flex w-full justify-start">
                   {[1, 2, 3, 4, 5].map((star) => (
@@ -229,7 +241,7 @@ const ProductSlider = () => {
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 0 00.951-.69l1.07-3.292z" />
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3 .921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784 .57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81 .588-1.81h3.461a1 0 00.951-.69l1.07-3.292z" />
                     </svg>
                   ))}
                 </div>
@@ -253,7 +265,7 @@ const ProductSlider = () => {
                     </div>
                     <button
                       className="bg-gray-900 text-white text-sm py-2 px-6 rounded w-full hover:bg-green-500 transition-all duration-300"
-                      onClick={() => handleViewDetails(product)} // Pass entire product
+                      onClick={() => handleViewDetails(product)}
                     >
                       View Details
                     </button>

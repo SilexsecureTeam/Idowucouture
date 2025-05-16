@@ -1,4 +1,5 @@
 import React, { useState, useEffect, memo } from "react";
+import { Skeleton } from "@mui/material";
 import herobg from "../assets/hero-bg.png";
 import herobg1 from "../assets/hero-bg1.png";
 import herobg2 from "../assets/hero-bg2.png";
@@ -6,6 +7,9 @@ import herobg2 from "../assets/hero-bg2.png";
 const Hero = () => {
   const images = [herobg, herobg1, herobg2];
   const [currentImage, setCurrentImage] = useState(0);
+  const [loadedImages, setLoadedImages] = useState(
+    Array(images.length).fill(false)
+  );
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -13,6 +17,14 @@ const Hero = () => {
     }, 3000);
     return () => clearInterval(interval);
   }, [images.length]);
+
+  const handleImageLoad = (index) => {
+    setLoadedImages((prev) => {
+      const updated = [...prev];
+      updated[index] = true;
+      return updated;
+    });
+  };
 
   return (
     <div className="relative px-5 sm:px-10 lg:px-20 w-full md:h-[90vh] h-[50vh] pb-14 bg-black overflow-hidden">
@@ -26,16 +38,22 @@ const Hero = () => {
         {images.map((img, index) => (
           <div
             key={index}
-            className="w-full h-full bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: `url(${img})` }}
+            className="w-full h-full bg-cover bg-center bg-no-repeat relative"
           >
+            {!loadedImages[index] && (
+              <Skeleton
+                variant="rectangular"
+                className="w-full h-full object-cover absolute inset-0"
+                sx={{ zIndex: 10 }}
+              />
+            )}
             <img
               src={img}
               alt={`Hero background ${index + 1}`}
               loading={index === 0 ? "eager" : "lazy"}
-              style={{ visibility: "hidden", width: 0, height: 0 }}
-              width="1920"
-              height="1080"
+              onLoad={() => handleImageLoad(index)}
+              className="w-full h-full object-cover absolute inset-0"
+              style={{ zIndex: 9 }}
             />
           </div>
         ))}

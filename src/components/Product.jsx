@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { Skeleton } from "@mui/material";
 import {
   Heart,
   Minus,
@@ -21,12 +22,19 @@ const Product = () => {
   const [expandedSection, setExpandedSection] = useState("details");
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const [loading, setLoading] = useState(true); // Added loading state
   const timerRef = useRef(null);
   const [isFavorite, setIsFavorite] = useState(false);
 
   const toggleFavorite = () => {
     setIsFavorite((prev) => !prev);
   };
+
+  // Simulate image loading
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const colors = [
     {
@@ -82,21 +90,21 @@ const Product = () => {
     selectedProduct?.oldPrice || selectedProduct?.originalPrice || 400.0;
 
   const handleAddToCart = () => {
-    if (quantity <= 0 || !selectedProduct) return; // Prevent adding if quantity is 0 or no product
+    if (quantity <= 0 || !selectedProduct) return;
     const productToAdd = {
       id: selectedProduct?.id || "default-product",
       name: title,
       price: price,
       image: selectedProduct?.image || table,
       color: selectedColor,
-      qty: quantity, // Use the selected quantity
+      qty: quantity,
     };
     addToCart(productToAdd);
-    setQuantity(1); // Reset quantity after adding to cart
+    setQuantity(1);
   };
 
   const decreaseQuantity = () => {
-    if (quantity > 1) setQuantity(quantity - 1); // Prevent going below 1
+    if (quantity > 1) setQuantity(quantity - 1);
   };
 
   const increaseQuantity = () => {
@@ -144,7 +152,6 @@ const Product = () => {
     }
   }, [isSmallScreen, currentSlide]);
 
-  // Render "No Product Clicked Yet" if no product is selected
   if (!selectedProduct) {
     return (
       <div className="px-5 sm:px-10 lg:px-20 py-8 text-center text-gray-500">
@@ -161,11 +168,11 @@ const Product = () => {
             Home
           </a>
         </Link>
-        <ChevronRight size={16} className=" text-gray-400" />
+        <ChevronRight size={16} className="text-gray-400" />
         <a href="#" className="text-[#605F5F] font-medium">
           Product
         </a>
-        <ChevronRight size={16} className=" text-gray-400" />
+        <ChevronRight size={16} className="text-gray-400" />
         <a href="#" className="text-black font-medium">
           {title}
         </a>
@@ -192,12 +199,20 @@ const Product = () => {
                   style={{ transform: `translateX(-${currentSlide * 100}%)` }}
                 >
                   {productImages.map((image, index) => (
-                    <img
-                      key={index}
-                      src={image.src}
-                      alt={image.alt}
-                      className="w-full h-82 object-fill object-center flex-shrink-0"
-                    />
+                    <div key={index} className="w-full flex-shrink-0">
+                      {loading ? (
+                        <Skeleton
+                          variant="rectangular"
+                          className="w-full h-82 object-fill object-center"
+                        />
+                      ) : (
+                        <img
+                          src={image.src}
+                          alt={image.alt}
+                          className="w-full h-82 object-fill object-center flex-shrink-0"
+                        />
+                      )}
+                    </div>
                   ))}
                 </div>
 
@@ -230,11 +245,18 @@ const Product = () => {
 
               <div className="hidden md:flex justify-between items-center space-x-4">
                 <div className="relative w-1/2">
-                  <img
-                    src={productImages[0].src}
-                    alt={productImages[0].alt}
-                    className="w-full h-70 object-fill rounded"
-                  />
+                  {loading ? (
+                    <Skeleton
+                      variant="rectangular"
+                      className="w-full h-70 object-fill rounded"
+                    />
+                  ) : (
+                    <img
+                      src={productImages[0].src}
+                      alt={productImages[0].alt}
+                      className="w-full h-70 object-fill rounded"
+                    />
+                  )}
                   <span className="absolute md:block hidden top-4 left-4 bg-white text-black px-2 py-1 text-xs font-semibold uppercase z-10">
                     New
                   </span>
@@ -242,24 +264,39 @@ const Product = () => {
                     -20%
                   </span>
                 </div>
-                <img
-                  src={productImages[0].src}
-                  alt={productImages[0].alt}
-                  className="w-1/2 h-70 object-fill rounded"
-                />
+                {loading ? (
+                  <Skeleton
+                    variant="rectangular"
+                    className="w-1/2 h-70 object-fill rounded"
+                  />
+                ) : (
+                  <img
+                    src={productImages[0].src}
+                    alt={productImages[0].alt}
+                    className="w-1/2 h-70 object-fill rounded"
+                  />
+                )}
               </div>
             </div>
           </div>
 
           <div className="hidden md:grid grid-cols-2 gap-4">
             {productImages.map((image, index) => (
-              <img
-                key={index}
-                src={image.src}
-                alt={image.alt}
-                className="w-full h-70 object-fill rounded cursor-pointer"
-                onClick={() => setCurrentSlide(index)}
-              />
+              <div key={index}>
+                {loading ? (
+                  <Skeleton
+                    variant="rectangular"
+                    className="w-full h-70 object-fill rounded cursor-pointer"
+                  />
+                ) : (
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    className="w-full h-70 object-fill rounded cursor-pointer"
+                    onClick={() => setCurrentSlide(index)}
+                  />
+                )}
+              </div>
             ))}
           </div>
         </div>
@@ -306,7 +343,7 @@ const Product = () => {
             <h3 className="font-medium text-base text-[#6C7275] mb-2">
               Measurements
             </h3>
-            <p className="text-xl text-[#000000]">17 1/2x20 5/8 </p>
+            <p className="text-xl text-[#000000]">17 1/2x20 5/8</p>
           </div>
 
           <div className="mb-6">
@@ -317,18 +354,30 @@ const Product = () => {
             </p>
             <div className="flex space-x-4">
               {colors.map((color) => (
-                <img
-                  key={color.id}
-                  src={color.src}
-                  alt={color.alt}
-                  className={`w-8 h-8 rounded-md border object-fill cursor-pointer ${
-                    selectedColor === color.id
-                      ? "ring-2 ring-offset-1 ring-black"
-                      : "ring-1 ring-gray-200"
-                  }`}
-                  onClick={() => setSelectedColor(color.id)}
-                  aria-label={`Select ${color.name} color`}
-                />
+                <div key={color.id}>
+                  {loading ? (
+                    <Skeleton
+                      variant="rectangular"
+                      className={`w-8 h-8 rounded-md border object-fill cursor-pointer ${
+                        selectedColor === color.id
+                          ? "ring-2 ring-offset-1 ring-black"
+                          : "ring-1 ring-gray-200"
+                      }`}
+                    />
+                  ) : (
+                    <img
+                      src={color.src}
+                      alt={color.alt}
+                      className={`w-8 h-8 rounded-md border object-fill cursor-pointer ${
+                        selectedColor === color.id
+                          ? "ring-2 ring-offset-1 ring-black"
+                          : "ring-1 ring-gray-200"
+                      }`}
+                      onClick={() => setSelectedColor(color.id)}
+                      aria-label={`Select ${color.name} color`}
+                    />
+                  )}
+                </div>
               ))}
             </div>
           </div>
@@ -364,7 +413,7 @@ const Product = () => {
             Add to Cart
           </button>
           <SelectFabricToggle />
-          <div className=" pt-4">
+          <div className="pt-4">
             <div className="flex justify-between w-[170px] text-sm text-gray-500 mb-2">
               <span className="text-[#6C7275] text-base">SKU</span>
               <span className="text-[#121212] font-medium">1123</span>
@@ -377,7 +426,7 @@ const Product = () => {
             </div>
           </div>
 
-          <div className=" mt-6">
+          <div className="mt-6">
             <div className="py-4 border-b border-gray-200">
               <button
                 className="flex justify-between items-center w-full text-left font-medium"
@@ -479,7 +528,7 @@ const Product = () => {
                             fill="currentColor"
                             viewBox="0 0 20 20"
                           >
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 0 00.951-.69l1.07-3.292z" />
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3 .921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784 .57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81 .588-1.81h3.461a1 0 00.951-.69l1.07-3.292z" />
                           </svg>
                         ))}
                       </div>
