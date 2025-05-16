@@ -183,7 +183,7 @@ const FeaturedSlider = () => {
                   </span>
                 )}
                 <div
-                  className="image-container"
+                  className="image-container h-56"
                   onClick={() =>
                     window.innerWidth < 768 &&
                     toggleButtons(product.id, !showButtons[product.id])
