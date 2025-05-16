@@ -14,7 +14,7 @@ const FeaturedSlider = () => {
   const navigate = useNavigate();
   const { setSelectedProduct } = useProduct();
   const [showButtons, setShowButtons] = useState({});
-  const [loading, setLoading] = useState(true); // Added loading state
+  const [loading, setLoading] = useState(true);
 
   // Simulate image loading
   useEffect(() => {
@@ -126,6 +126,13 @@ const FeaturedSlider = () => {
         }
         .image-container {
           position: relative;
+          width: 100%;
+          height: 14rem; /* h-56 = 14 * 4 = 56px units */
+          border-top-left-radius: 0.375rem; /* rounded-t-md */
+          border-top-right-radius: 0.375rem;
+          overflow: hidden;
+          background-color: black;
+          cursor: pointer;
         }
         .overlay {
           position: absolute;
@@ -191,13 +198,15 @@ const FeaturedSlider = () => {
                   {loading ? (
                     <Skeleton
                       variant="rectangular"
-                      className="w-full h-56 object-cover bg-black rounded-t-md"
+                      width="100%"
+                      height="100%"
+                      className="rounded-t-md"
                     />
                   ) : (
                     <img
                       src={product.image}
                       alt={product.name}
-                      className="w-full h-56 object-cover bg-gray-300 rounded-t-md"
+                      className="w-full h-56 object-cover bg-black rounded-t-md"
                     />
                   )}
                   <div
