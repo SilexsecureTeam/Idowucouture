@@ -194,7 +194,7 @@ const Contact = () => {
           </div>
         </div>
       </div>
-      <div className="flex justify-center mt-15 itrem-center flex-wrap gap-x-6">
+      <div className="flex justify-center mt-15 itrem-center flex-wrap gap-x-6 gap-6">
         {/* Policy Question */}
         <div className="bg-[#1F83401A] p-8 gap-4 rounded-lg flex flex-col items-center text-center">
           <HelpCircle className="w-8 h-8 text-teal-600 mb-3" />
