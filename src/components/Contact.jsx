@@ -262,8 +262,8 @@ const Contact = () => {
                     Address
                   </h2>
                   <p className="text-black poppins text-[16px] max-w-[300px]">
-                    Idowu Couture, Shop 2 Hee 120, adjacent TASTIA Restaurant 38
-                    Road junction, 3rd Avenue Gwarinpa
+                    Idowu Couture, Hse 120, adjacent TASTIA Restaurant 35Road
+                    junction, 3rd Avenue Gwarinpa
                   </p>
                 </div>
               </div>

@@ -199,7 +199,8 @@ const Footer = () => {
               } md:block space-y-1.5 text-[14px] text-[#fefefe]`}
             >
               <li>
-                Idowu Couture, Shop 2 Hee 120, adjacent TASTIA Restaurant 38
+                Idowu Couture, Hse 120, adjacent TASTIA Restaurant 35Road
+                junction, 3rd Avenue Gwarinpa
               </li>
               <li>Abuja</li>
               <li className="mt-3">+234 80234545061</li>
