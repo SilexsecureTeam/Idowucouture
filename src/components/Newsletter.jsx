@@ -6,7 +6,7 @@ const Newsletter = () => {
   // const backgroundImage = newsletter
   return (
     <div
-      className="bg-cover py-18 px-5 bg-black  bg-no-repeat bg-center h-fit w-full"
+      className="bg-cover py-18 px-5 bg-[#E0B654]  bg-no-repeat bg-center h-fit w-full"
       // style={{ backgroundImage: `url(${backgroundImage})` }}
     >
       <div className="max-w-[520px] w-full mx-auto">

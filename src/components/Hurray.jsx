@@ -46,8 +46,8 @@ const Hurray = () => {
 
   return (
     <div className="flex flex-wrap w-full h-fit items-stretch">
-      <div className="bg-black px-15 py-5 w-full sm:w-1/2 flex flex-col justify-center">
-        <h3 className="text-[#38CB89] text-center sm:text-start font-bold mb-2 text-base">
+      <div className="bg-[#E0B654] px-15 py-5 w-full sm:w-1/2 flex flex-col justify-center">
+        <h3 className="text-black text-center sm:text-start font-bold mb-2 text-base">
           LIMITED EDITION
         </h3>
         <h1 className="text-2xl text-center sm:text-start md:text-[40px] font-medium poppins mb-2 text-white">
@@ -74,7 +74,7 @@ const Hurray = () => {
           </span>
         </div>
         <div className="flex justify-center sm:justify-start">
-          <button className="rounded-xl text-black mx-auto sm:mx-0 font-medium cursor-pointer text-base px-6 py-2 bg-[#38CB89]">
+          <button className="rounded-xl text-white mx-auto sm:mx-0 font-medium cursor-pointer text-base px-6 py-2 bg-black">
             Shop now
           </button>
         </div>

@@ -44,12 +44,12 @@ const Collection = () => {
             />
           )}
           <div className="absolute bottom-4 left-4">
-            <h3 className="sm:text-[34px] text-xl poppins text-[#121212] font-medium mb-1 md:mb-2">
+            <h3 className="sm:text-[34px] text-xl poppins text-[#9E0505] font-medium mb-1 md:mb-2">
               {collections[0].title}
             </h3>
             <a
               href={collections[0].link}
-              className="text-base text-[#121212] font-medium flex items-center gap-1 border-b-1 border-b-black pb-1 w-fit"
+              className="text-base text-white font-medium flex items-center gap-1 border-b-1 border-b-white pb-1 w-fit"
             >
               Collections <span>→</span>
             </a>
@@ -75,12 +75,12 @@ const Collection = () => {
               />
             )}
             <div className="absolute bottom-4 left-4">
-              <h3 className="sm:text-[34px] text-xl poppins text-[#121212] font-medium mb-1 md:mb-2">
+              <h3 className="sm:text-[34px] text-xl poppins text-[#9E0505] font-medium mb-1 md:mb-2">
                 {collections[1].title}
               </h3>
               <a
                 href={collections[1].link}
-                className="text-base text-[#121212] font-medium flex items-center gap-1 border-b-1 border-b-black pb-1 w-fit"
+                className="text-base text-white font-medium flex items-center gap-1 border-b-1 border-b-white pb-1 w-fit"
               >
                 Collections <span>→</span>
               </a>
@@ -105,12 +105,12 @@ const Collection = () => {
               />
             )}
             <div className="absolute bottom-4 left-4">
-              <h3 className="sm:text-[34px] text-xl poppins text-[#121212] font-medium mb-1 md:mb-2">
+              <h3 className="sm:text-[34px] text-xl poppins text-[#9E0505] font-medium mb-1 md:mb-2">
                 {collections[2].title}
               </h3>
               <a
                 href={collections[2].link}
-                className="text-base text-[#121212] font-medium flex items-center gap-1 border-b-1 border-b-black pb-1 w-fit"
+                className="text-base text-white font-medium flex items-center gap-1 border-b-1 border-b-white pb-1 w-fit"
               >
                 Collections <span>→</span>
               </a>
