@@ -439,10 +439,10 @@ const Contact = () => {
                     <button
                       onClick={handleSubmit}
                       disabled={isSubmitting}
-                      className={`px-6 py-3 rounded-md bg-[#38CB89] cursor-pointer text-white font-medium ${
+                      className={`px-6 py-3 rounded-md bg-[#E0B654] transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer text-white font-medium ${
                         isSubmitting
                           ? "opacity-70 cursor-not-allowed"
-                          : "hover:bg-[#38CB89]"
+                          : "hover:bg-amber-300 hover:text-black "
                       } transition-colors`}
                     >
                       {isSubmitting ? "Submitting..." : "Submit Message"}

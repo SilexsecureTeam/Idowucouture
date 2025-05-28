@@ -12,7 +12,7 @@ const Terms = () => {
             className="h-full w-full object-cover object-center"
           />
         </div>
-        <div className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-[#38CB89] px-5 py-3 md:text-5xl text-2xl font-bold text-white">
+        <div className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-[#E0B654] px-5 py-3 md:text-5xl text-2xl font-bold text-white">
           Terms & Condition
         </div>
       </div>

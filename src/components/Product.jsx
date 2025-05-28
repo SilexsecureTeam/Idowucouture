@@ -408,7 +408,7 @@ const Product = () => {
 
           <button
             onClick={handleAddToCart}
-            className="md:col-span-4 py-3 mb-2 bg-black cursor-pointer w-full text-center text-white rounded-md hover:bg-gray-800 transition-colors"
+            className="md:col-span-4 py-3 mb-2 bg-[#E0B654] hover:bg-amber-300 transition duration-300 ease-in-out transform hover:scale-105  cursor-pointer w-full text-center text-white rounded-md "
           >
             Add to Cart
           </button>

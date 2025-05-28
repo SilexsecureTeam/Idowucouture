@@ -124,7 +124,7 @@ const About = () => {
             />
           )}
         </div>
-        <div className="absolute py-4 md:w-[50%] w-[80%] mon left-1/2 -translate-x-1/2 md:text-[40px] text-base font-semibold text-center -bottom-9 bg-[#38CB89]">
+        <div className="absolute py-4 md:w-[50%] w-[80%] mon left-1/2 -translate-x-1/2 md:text-[40px] text-base font-semibold text-center -bottom-9 bg-[#E0B654]">
           Trusted Baby Product
         </div>
       </div>

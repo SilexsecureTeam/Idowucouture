@@ -58,7 +58,7 @@ const Hero = () => {
           </div>
         ))}
       </div>
-      <button className="bg-[#38CB89] absolute bottom-16 md:bottom-16 left-1/2 -translate-x-1/2 cursor-pointer hover:bg-green-400 mx-auto md:mx-0 block text-black font-medium py-3 px-8 rounded-md transition duration-300 ease-in-out transform hover:scale-105">
+      <button className="bg-[#E0B654] hover:bg-amber-300 transition duration-300 ease-in-out transform hover:scale-105 absolute bottom-16 md:bottom-16 left-1/2 -translate-x-1/2 cursor-pointer  mx-auto md:mx-0 block text-black font-medium py-3 px-8 rounded-md ">
         Shop Now
       </button>
     </div>

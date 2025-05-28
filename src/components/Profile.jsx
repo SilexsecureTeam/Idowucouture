@@ -5,31 +5,31 @@ const Profile = () => {
   const navItems = [
     {
       label: "Orders",
-      icon: <User className="w-4 h-4 mr-2 text-[#00659D]" />,
+      icon: <User className="w-4 h-4 mr-2 text-[#2DD4BF]" />,
       path: "/tracking",
     },
     {
       label: "Wishlist",
-      icon: <Heart className="w-4 h-4 mr-2 text-[#00659D]" />,
+      icon: <Heart className="w-4 h-4 mr-2 text-[#2DD4BF]" />,
     },
     {
       label: "Recently Viewed",
-      icon: <Eye className="w-4 h-4 mr-2 text-[#00659D]" />,
+      icon: <Eye className="w-4 h-4 mr-2 text-[#2DD4BF]" />,
     },
     {
       label: "Profile",
-      icon: <User className="w-4 h-4 mr-2 text-[#00659D]" />,
+      icon: <User className="w-4 h-4 mr-2 text-[#2DD4BF]" />,
     },
     {
       label: "Setting",
-      icon: <Settings className="w-4 h-4 mr-2 text-[#00659D]" />,
+      icon: <Settings className="w-4 h-4 mr-2 text-[#2DD4BF]" />,
     },
   ];
   return (
     <div className="min-h-fit bg-white flex flex-col pt-15 md:flex-row px-5 sm:px-10 lg:px-20">
       {/* Sidebar */}
       <aside className="w-full md:w-64 bg-[#DCFFEF]  shadow md:mr-8 mb-4 md:mb-0 flex flex-col">
-        <div className="bg-green-700 text-white text-center py-4 mon  font-semibold tracking-wide">
+        <div className="bg-[#E0B654]  text-white text-center py-4 mon  font-semibold tracking-wide">
           IDOWUCOUTURE ACCOUNT
         </div>
         <nav className="flex-1 px-6 py-4">
@@ -39,7 +39,7 @@ const Profile = () => {
                 {item.path ? (
                   <Link
                     to={item.path}
-                    className="flex items-center cursor-pointer hover:bg-green-500 poppins font-normal text-[16px] w-full text-[#00659D] px-2 py-2 rounded transition"
+                    className="flex items-center cursor-pointer hover:bg-amber-300 poppins font-normal text-[16px] w-full text-[#00659D] px-2 py-2 rounded transition"
                     aria-label={item.label}
                   >
                     {item.icon}
@@ -47,7 +47,7 @@ const Profile = () => {
                   </Link>
                 ) : (
                   <button
-                    className="flex items-center cursor-pointer hover:bg-green-500 poppins font-normal text-[16px] w-full text-[#00659D] px-2 py-2 rounded transition"
+                    className="flex items-center cursor-pointer hover:bg-amber-300 poppins font-normal text-[16px] w-full text-[#00659D] px-2 py-2 rounded transition"
                     aria-label={item.label}
                   >
                     {item.icon}
@@ -59,7 +59,7 @@ const Profile = () => {
           </ul>
         </nav>
         <div className="p-6">
-          <button className="w-full flex items-center cursor-pointer justify-center bg-green-700 text-white py-2 rounded-lg font-semibold hover:bg-green-800 transition">
+          <button className="w-full flex items-center cursor-pointer justify-center bg-[#E0B654]  text-white py-2 rounded-lg font-semibold hover:bg-green-800 transition">
             <LogOut className="w-4 h-4 mr-2" />
             LOGOUT
           </button>
@@ -69,11 +69,11 @@ const Profile = () => {
       {/* Main Content */}
       <main className="flex-1 bg-[#DCFFEF] shadow p-4 md:p-8">
         <div className="flex items-center justify-between border-b border-b-C  pb-2 mb-4">
-          <h2 className="font-semibold text-lg md:text-xl  text-green-900">
+          <h2 className="font-semibold text-lg md:text-xl  text-[#E0B654] ">
             Account Overview
           </h2>
           <button
-            className="text-green-700 hover:bg-green-200 p-2 rounded"
+            className="text-green-900 hover:bg-green-200 p-2 rounded"
             aria-label="Edit"
           >
             <Edit2 className="w-5 h-5" />
@@ -95,7 +95,7 @@ const Profile = () => {
             <div className="flex items-center justify-between font-medium border-b border-b-[#00659D] p-3 text-black mb-2 text-sm">
               <h3 className="font-medium  text-sm">ADDRESS BOOK</h3>
               <button
-                className="text-green-500 hover:bg-green-100 p-1 rounded"
+                className="text-green-700 hover:bg-green-100 p-1 rounded"
                 aria-label="Edit Address"
               >
                 <Edit2 className="w-4 h-4" />

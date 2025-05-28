@@ -43,7 +43,7 @@ export default function TrackingOrder() {
         <span>
           <ChevronRightIcon />
         </span>
-        <span className="text-green-600 font-medium">Track Order</span>
+        <span className="text-amber-400 font-medium">Track Order</span>
       </div>
 
       {/* Main Content */}

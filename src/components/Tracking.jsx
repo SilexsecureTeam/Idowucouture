@@ -19,7 +19,7 @@ export default function Tracking() {
         <span>
           <ChevronRightIcon />
         </span>
-        <span className="text-green-600 font-medium">Track Order</span>
+        <span className="text-amber-400 font-medium">Track Order</span>
       </div>
 
       {/* Heading */}
@@ -59,7 +59,7 @@ export default function Tracking() {
           <Link to="/trackingorder">
             <button
               type="submit"
-              className="bg-green-600 hover:bg-green-700 text-white font-medium text-sm px-6 py-2 rounded flex items-center gap-2"
+              className="bg-[#E0B654]  hover:bg-amber-300 duration-300 transition ease-in-out cursor-pointer text-white font-medium text-sm px-6 py-2 rounded flex items-center gap-2"
             >
               TRACK ORDER <ArrowRight className="w-4 h-4" />
             </button>

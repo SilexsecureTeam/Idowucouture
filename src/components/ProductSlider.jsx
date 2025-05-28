@@ -264,7 +264,7 @@ const ProductSlider = () => {
                       )}
                     </div>
                     <button
-                      className="bg-gray-900 text-white text-sm py-2 px-6 rounded w-full hover:bg-green-500 transition-all duration-300"
+                      className="bg-gray-900 text-white text-sm py-2 px-6 rounded w-full hover:bg-amber-300 transition-all duration-300"
                       onClick={() => handleViewDetails(product)}
                     >
                       View Details

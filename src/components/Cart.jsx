@@ -124,13 +124,13 @@ const Cart = () => {
                   onChange={(e) => setPromo(e.target.value)}
                   className="md:flex-1 w-full  px-3 py-2 bg-[#F0F0F0] rounded-4xl text-black outline-none placeholder:text-[#6C7275]"
                 />
-                <button className="bg-black text-16 rounded-4xl cursor-pointer text-white px-4 md:px-6 py-2">
+                <button className="bg-[#E0B654] hover:bg-amber-300 transition duration-300 ease-in-out transform hover:scale-105  text-16 rounded-4xl cursor-pointer text-white px-4 md:px-6 py-2">
                   Apply
                 </button>
               </div>
               <Link to="/checkout">
                 {" "}
-                <button className="w-full flex justify-center gap-x-2 cursor-pointer bg-black text-white py-3 rounded-4xl mt-4 font-semibold hover:bg-gray-800 transition">
+                <button className="w-full flex justify-center gap-x-2 cursor-pointer bg-[#E0B654] hover:bg-amber-300 transition duration-300 ease-in-out transform hover:scale-105  text-white py-3 rounded-4xl mt-4 font-semibold ">
                   Go to Checkout
                   <ArrowRightIcon className="w-[30px]" />
                 </button>{" "}
